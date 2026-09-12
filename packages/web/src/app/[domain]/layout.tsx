@@ -1,5 +1,5 @@
 import { prisma } from "@/prisma";
-import { auth, signOut } from "@/auth";
+import { auth } from "@/auth";
 import { getOrgFromDomain } from "@/data/org";
 import { isServiceError } from "@/lib/utils";
 import { OnboardGuard } from "./components/onboardGuard";
@@ -47,11 +47,10 @@ export default async function Layout({
             });
 
             // A session can outlive the user it names - a restored database, a
-            // deleted account. signOut throws a redirect, so nothing below it
-            // runs for that case; a real user who simply lacks membership
-            // still gets the 404.
+            // deleted account. A layout may not clear the session cookie
+            // itself, so hand the browser to the sign-out route, which may.
             if (!user) {
-                await signOut({ redirectTo: '/login' });
+                redirect('/api/auth/signout?callbackUrl=/login');
             }
 
             return notFound();
