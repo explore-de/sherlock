@@ -1,13 +1,14 @@
 name: PR Gate
 
-# This gate simply validates that we can build the docker container.
+# This gate validates that no high or critical advisories affect our npm dependencies.
+# The Docker image is built and scanned by the Security workflow.
 
 on:
   pull_request:
     branches: ["main"]
 
 jobs:
-  build:
+  audit:
     runs-on: ubuntu-latest
     permissions:
       contents: read
@@ -15,8 +16,10 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Build Docker image
-        id: build
-        uses: docker/build-push-action@v6
+      - name: Use Node.Js
+        uses: actions/setup-node@v4
         with:
-          context: .
+          node-version-file: '.nvmrc'
+
+      - name: Audit dependencies
+        run: corepack enable && yarn npm audit --all --recursive --severity high

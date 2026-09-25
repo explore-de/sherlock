@@ -10,6 +10,7 @@
   <a href="https://github.com/explore-de/sherlock/actions/workflows/pr-gate.yml"><img alt="PR Gate" src="https://github.com/explore-de/sherlock/actions/workflows/pr-gate.yml/badge.svg"></a>
   <a href="https://github.com/explore-de/sherlock/actions/workflows/test-web.yml"><img alt="Test Web" src="https://github.com/explore-de/sherlock/actions/workflows/test-web.yml/badge.svg"></a>
   <a href="https://github.com/explore-de/sherlock/actions/workflows/test-backend.yml"><img alt="Test Backend" src="https://github.com/explore-de/sherlock/actions/workflows/test-backend.yml/badge.svg"></a>
+  <a href="https://github.com/explore-de/sherlock/actions/workflows/security.yml"><img alt="Security" src="https://github.com/explore-de/sherlock/actions/workflows/security.yml/badge.svg"></a>
   <a href="https://github.com/explore-de/sherlock/actions/workflows/ghcr-publish.yml"><img alt="Publish to ghcr" src="https://github.com/explore-de/sherlock/actions/workflows/ghcr-publish.yml/badge.svg"></a>
 </p>
 
@@ -145,6 +146,17 @@ The command above provides a local instance with persistent storage. To use a co
 The image starts a PostgreSQL and a Redis instance unless external services are configured, and keeps the index, the database and the cache under `/data` — mount a volume there, or an update discards the index and re-clones everything.
 
 Do not use upstream Sourcebot images for Sherlock. Fly templates require your own unique application name. Registry publishing is manual and targets the current GitHub repository.
+
+## Security checks
+
+Every pull request to `main` runs:
+
+- `PR Gate`: `yarn npm audit` fails on high or critical advisories in the npm dependencies.
+- `Security`: builds the Docker image, generates a CycloneDX SBOM with Syft and fails when Grype finds a high or critical vulnerability that has a fix. Results appear under *Security → Code scanning*.
+
+Dependabot opens daily update pull requests for npm, the Dockerfile base images and GitHub Actions (`.github/dependabot.yml`).
+
+Pushes to `main` and `v*` tags also publish two SBOMs to Dependency-Track: `explore/sherlock` (npm dependencies) and `ghcr.io/explore-de/sherlock` (image), as version `dev-<run number>` on `main` or the tag without its `v`. Afterwards `scripts/ci/dtrack-version-cleanup.mjs` keeps the published version and the most recent release active and deactivates older versions. This needs the repository secret `DT_API_KEY` with the permissions `BOM_UPLOAD`, `PROJECT_CREATION_UPLOAD`, `VIEW_PORTFOLIO` and `PORTFOLIO_MANAGEMENT`.
 
 ## Identity and integrations
 
