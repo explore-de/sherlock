@@ -54,8 +54,6 @@ jobs:
           context: .
           load: true
           tags: sherlock:ci
-          cache-from: type=gha
-          cache-to: type=gha,mode=max
 
       - name: Generate image SBOM
         uses: anchore/sbom-action@3ad7283483fc7af8ff2b4ea19663c2d5ca935e26 # v0.24.2
