@@ -8,6 +8,7 @@ import { Card, CardHeader, CardDescription, CardTitle, CardContent, CardFooter }
 import { Button } from "@/components/ui/button"
 import { ArrowLeft } from "lucide-react"
 import { useRouter, useSearchParams } from "next/navigation"
+import Link from "next/link"
 import { useCallback, useState, Suspense } from "react"
 import VerificationFailed from "./verificationFailed"
 import { SherlockLogo } from "@/app/components/sherlockLogo"
@@ -89,9 +90,9 @@ function VerifyPageContent() {
                     <div className="mt-8 text-center text-sm text-muted-foreground">
                         <p>
                             Having trouble?{" "}
-                            <a href="/about#help" className="text-primary hover:underline">
+                            <Link href="/about#help" className="text-primary hover:underline">
                                 Get help
-                            </a>
+                            </Link>
                         </p>
                     </div>
                 </div>

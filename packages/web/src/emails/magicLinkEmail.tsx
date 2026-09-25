@@ -7,7 +7,7 @@ import {
     Section,
     Tailwind,
     Text,
-} from '@react-email/components';
+} from 'react-email';
 
 interface MagicLinkEmailProps {
     baseUrl: string,

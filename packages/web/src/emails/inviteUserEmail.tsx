@@ -13,7 +13,7 @@ import {
     Section,
     Tailwind,
     Text,
-} from '@react-email/components';
+} from 'react-email';
 import { EmailFooter } from './emailFooter';
 interface InviteUserEmailProps {
     inviteLink: string;

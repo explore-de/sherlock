@@ -6,13 +6,14 @@ import { Footer } from "@/app/components/footer";
 import { isOauthProvider } from "./oauthProviders";
 
 interface LoginProps {
-    searchParams: {
+    searchParams: Promise<{
         callbackUrl?: string;
         error?: string;
-    }
+    }>
 }
 
-export default async function Login({ searchParams }: LoginProps) {
+export default async function Login(props: LoginProps) {
+    const searchParams = await props.searchParams;
     const session = await auth();
     if (session) {
         return redirect("/");

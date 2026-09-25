@@ -3,10 +3,13 @@ import { Header } from "../components/header";
 import { NewConnectionCard } from "./components/newConnectionCard";
 import { getConnections, getOrgMembership } from "@/actions";
 import { isServiceError } from "@/lib/utils";
-import { notFound, ServiceErrorException } from "@/lib/serviceError";
+import { ServiceErrorException } from "@/lib/serviceError";
+import { notFound } from "next/navigation";
 import { OrgRole } from "@sourcebot/db";
 
-export default async function ConnectionsPage({ params: { domain } }: { params: { domain: string } }) {
+export default async function ConnectionsPage(props: { params: Promise<{ domain: string }> }) {
+    const { domain } = await props.params;
+
     const connections = await getConnections(domain);
     if (isServiceError(connections)) {
         throw new ServiceErrorException(connections);

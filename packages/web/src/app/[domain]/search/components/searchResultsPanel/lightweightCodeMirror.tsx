@@ -29,8 +29,8 @@ const LightweightCodeMirror = forwardRef<CodeMirrorRef, CodeMirrorProps>(({
     className,
 }, ref) => {
     const editor = useRef<HTMLDivElement | null>(null);
-    const viewRef = useRef<EditorView>();
-    const stateRef = useRef<EditorState>();
+    const viewRef = useRef<EditorView | undefined>(undefined);
+    const stateRef = useRef<EditorState | undefined>(undefined);
 
     useImperativeHandle(ref, () => ({
         editor: editor.current,

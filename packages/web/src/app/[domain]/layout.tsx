@@ -1,7 +1,6 @@
 import { prisma } from "@/prisma";
 import { auth, signOut } from "@/auth";
 import { getOrgFromDomain } from "@/data/org";
-import { isServiceError } from "@/lib/utils";
 import { OnboardGuard } from "./components/onboardGuard";
 import { cookies, headers } from "next/headers";
 import { getSelectorsByUserAgent } from "react-device-detect";
@@ -13,13 +12,14 @@ import { env } from "@/env.mjs";
 import { notFound, redirect } from "next/navigation";
 interface LayoutProps {
     children: React.ReactNode,
-    params: { domain: string }
+    params: Promise<{ domain: string }>
 }
 
-export default async function Layout({
-    children,
-    params: { domain },
-}: LayoutProps) {
+export default async function Layout(props: LayoutProps) {
+    const { domain } = await props.params;
+
+    const { children } = props;
+
     const org = await getOrgFromDomain(domain);
 
     if (!org) {

@@ -19,7 +19,7 @@ import { ConnectionSyncStatus, Prisma, OrgRole, RepoIndexingStatus } from "@sour
 import { cookies, headers } from "next/headers"
 import { Session } from "next-auth";
 import { env } from "@/env.mjs";
-import { render } from "@react-email/components";
+import { render } from "react-email";
 import InviteUserEmail from "./emails/inviteUserEmail";
 import { createTransport } from "nodemailer";
 import { orgDomainSchema, orgNameSchema, repositoryQuerySchema } from "./lib/schemas";
@@ -134,7 +134,7 @@ export const withTenancyModeEnforcement = async<T>(mode: TenancyMode, fn: () => 
 
 ////// Actions ///////
 
-export const createOrg = (name: string, domain: string): Promise<{ id: number } | ServiceError> => sew(() =>
+export const createOrg = async (name: string, domain: string): Promise<{ id: number } | ServiceError> => sew(() =>
     withTenancyModeEnforcement('multi', () =>
         withAuth(async (session) => {
             const org = await prisma.org.create({
@@ -230,7 +230,7 @@ export const completeOnboarding = async (domain: string): Promise<{ success: boo
         })
     ));
 
-export const getSecrets = (domain: string): Promise<{ createdAt: Date; key: string; }[] | ServiceError> => sew(() =>
+export const getSecrets = async (domain: string): Promise<{ createdAt: Date; key: string; }[] | ServiceError> => sew(() =>
     withAuth((session) =>
         withOrgMembership(session, domain, async ({ orgId }) => {
             const secrets = await prisma.secret.findMany({
@@ -1105,7 +1105,7 @@ export const getOrgInvites = async (domain: string) => sew(() =>
     ));
 
 export const dismissMobileUnsupportedSplashScreen = async () => sew(async () => {
-    await cookies().set(MOBILE_UNSUPPORTED_SPLASH_SCREEN_DISMISSED_COOKIE_NAME, 'true');
+    (await cookies()).set(MOBILE_UNSUPPORTED_SPLASH_SCREEN_DISMISSED_COOKIE_NAME, 'true');
     return true;
 });
 
@@ -1205,7 +1205,7 @@ export const decryptValue = async (iv: string, encryptedValue: string) => {
     return decrypt(iv, encryptedValue);
 }
 
-export const getApiKeys = (domain: string): Promise<{ id: string; name: string; preview: string; createdAt: Date; lastUsedAt: Date | null; }[] | ServiceError> => sew(() =>
+export const getApiKeys = async (domain: string): Promise<{ id: string; name: string; preview: string; createdAt: Date; lastUsedAt: Date | null; }[] | ServiceError> => sew(() =>
     withAuth((session) =>
         withOrgMembership(session, domain, async ({ orgId }) => {
             const keys = await prisma.apiKey.findMany({

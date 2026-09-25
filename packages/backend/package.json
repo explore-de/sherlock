@@ -19,7 +19,7 @@
         "tsc-watch": "^6.2.0",
         "tsx": "^4.19.1",
         "typescript": "^5.6.2",
-        "vitest": "^2.1.9"
+        "vitest": "^4.1.11"
     },
     "dependencies": {
         "@gitbeaker/rest": "^40.5.1",
@@ -27,8 +27,8 @@
         "@logtail/winston": "^0.5.2",
         "@octokit/rest": "^21.0.2",
         "@sentry/cli": "^2.42.2",
-        "@sentry/node": "^9.3.0",
-        "@sentry/profiling-node": "^9.3.0",
+        "@sentry/node": "^10.75.3",
+        "@sentry/profiling-node": "^10.75.3",
         "@sourcebot/crypto": "workspace:*",
         "@sourcebot/db": "workspace:*",
         "@sourcebot/error": "workspace:*",
@@ -43,12 +43,12 @@
         "express": "^4.21.2",
         "gitea-js": "^1.22.0",
         "glob": "^11.0.0",
-        "ioredis": "^5.4.2",
+        "ioredis": "^5.11.1",
         "lowdb": "^7.0.1",
         "micromatch": "^4.0.8",
         "posthog-node": "^4.2.1",
         "prom-client": "^15.1.3",
-        "simple-git": "^3.27.0",
+        "simple-git": "^3.36.0",
         "strip-json-comments": "^5.0.1",
         "winston": "^3.15.0",
         "zod": "^3.24.2"

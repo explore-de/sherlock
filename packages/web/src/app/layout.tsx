@@ -20,8 +20,8 @@ const pixelFont = Jersey_10({
     display: "swap",
 });
 
-export function generateMetadata(): Metadata {
-    const requestHeaders = headers();
+export async function generateMetadata(): Promise<Metadata> {
+    const requestHeaders = await headers();
     const configuredUrl = new URL(env.AUTH_URL);
     const host = requestHeaders.get("x-forwarded-host")?.split(",")[0].trim()
         || requestHeaders.get("host");

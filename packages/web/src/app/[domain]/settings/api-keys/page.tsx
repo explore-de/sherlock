@@ -6,12 +6,14 @@ import { CreateApiKeyCard } from "./components/createApiKeyCard";
 import { McpSetupCard } from "./components/mcpSetupCard";
 
 interface ApiKeysPageProps {
-    params: {
+    params: Promise<{
         domain: string;
-    }
+    }>
 }
 
-export default async function ApiKeysPage({ params: { domain } }: ApiKeysPageProps) {
+export default async function ApiKeysPage(props: ApiKeysPageProps) {
+    const { domain } = await props.params;
+
     const apiKeys = await getApiKeys(domain);
     if (isServiceError(apiKeys)) {
         throw new ServiceErrorException(apiKeys);

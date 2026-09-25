@@ -5,12 +5,14 @@ import { ImportSecretCard } from "./components/importSecretCard";
 import { ServiceErrorException } from "@/lib/serviceError";
 
 interface SecretsPageProps {
-    params: {
+    params: Promise<{
         domain: string;
-    }
+    }>
 }
 
-export default async function SecretsPage({ params: { domain } }: SecretsPageProps) {
+export default async function SecretsPage(props: SecretsPageProps) {
+    const { domain } = await props.params;
+
     const secrets = await getSecrets(domain);
     if (isServiceError(secrets)) {
         throw new ServiceErrorException(secrets);
