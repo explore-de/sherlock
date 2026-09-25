@@ -18,7 +18,7 @@
     "dev:redis:up": "docker start sherlock-redis 2>/dev/null || docker run -d --name sherlock-redis -p 127.0.0.1:6379:6379 redis:7.2-alpine",
     "dev:redis:flush": "docker exec sherlock-redis redis-cli FLUSHALL",
     "dev:services:up": "npm-run-all --parallel dev:db:up dev:redis:up",
-    "dev:zoekt:build": "cd vendor/zoekt && GOTOOLCHAIN=go1.23.4+auto go build -o ../../bin/zoekt-git-index ./cmd/zoekt-git-index && GOTOOLCHAIN=go1.23.4+auto go build -o ../../bin/zoekt-webserver ./cmd/zoekt-webserver"
+    "dev:zoekt:build": "cd vendor/zoekt && GOTOOLCHAIN=go1.27.1+auto go build -o ../../bin/zoekt-git-index ./cmd/zoekt-git-index && GOTOOLCHAIN=go1.27.1+auto go build -o ../../bin/zoekt-webserver ./cmd/zoekt-webserver"
   },
   "devDependencies": {
     "cross-env": "^7.0.3",
@@ -30,6 +30,6 @@
   },
   "packageManager": "yarn@4.7.0",
   "engines": {
-    "node": ">=24.15.0"
+    "node": ">=24.21.0"
   }
 }
