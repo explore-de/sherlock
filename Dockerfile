@@ -18,8 +18,8 @@ ARG NEXT_PUBLIC_SOURCEBOT_CLOUD_ENVIRONMENT
 ARG NEXT_PUBLIC_SENTRY_WEBAPP_DSN
 ARG NEXT_PUBLIC_SENTRY_BACKEND_DSN
 
-FROM node:24.15.0-alpine3.22 AS node-alpine
-FROM golang:1.23.4-alpine3.21 AS go-alpine
+FROM node:24.21.0-alpine3.24 AS node-alpine
+FROM golang:1.27.1-alpine3.24 AS go-alpine
 # ----------------------------------
 
 # ------ Build Zoekt ------
@@ -213,6 +213,11 @@ COPY --from=shared-libs-builder /app/packages/error ./packages/error
 
 # Configure dependencies
 RUN apk add --no-cache git ca-certificates bind-tools tini jansson wget supervisor uuidgen curl perl jq redis postgresql postgresql-contrib openssl util-linux unzip
+
+# Bundled npm in the node base image lags fixed versions of its own deps
+# (brace-expansion, tar, ip-address); bump it in place even though npm is not
+# used at runtime, so CVE scans of the image stay clean.
+RUN npm install -g npm@12.1.0
 
 # Configure the database
 RUN mkdir -p /run/postgresql && \

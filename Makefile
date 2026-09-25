@@ -8,7 +8,7 @@ yarn:
 
 zoekt:
 	mkdir -p bin
-	GOTOOLCHAIN=go1.23.4 go build -C vendor/zoekt -o $(PWD)/bin ./cmd/...
+	GOTOOLCHAIN=go1.27.1 go build -C vendor/zoekt -o $(PWD)/bin ./cmd/...
 	export PATH="$(PWD)/bin:$(PATH)"
 	export CTAGS_COMMANDS=ctags
 
