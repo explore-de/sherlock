@@ -10,7 +10,9 @@ import { RepositorySnapshot } from "./components/repositorySnapshot";
 import { SyntaxReferenceGuideHint } from "./components/syntaxReferenceGuideHint";
 import { env } from '@/env.mjs';
 
-export default async function Home({ params: { domain } }: { params: { domain: string } }) {
+export default async function Home(props: { params: Promise<{ domain: string }> }) {
+    const { domain } = await props.params;
+
     const org = await getOrgFromDomain(domain);
     if (!org) {
         return <PageNotFound />

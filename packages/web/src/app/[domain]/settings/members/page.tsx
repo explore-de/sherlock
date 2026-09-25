@@ -9,15 +9,19 @@ import { InvitesList } from "./components/invitesList";
 import { getOrgInvites, getMe } from "@/actions";
 import { ServiceErrorException } from "@/lib/serviceError";
 interface MembersSettingsPageProps {
-    params: {
+    params: Promise<{
         domain: string
-    },
-    searchParams: {
+    }>,
+    searchParams: Promise<{
         tab?: string
-    }
+    }>
 }
 
-export default async function MembersSettingsPage({ params: { domain }, searchParams: { tab } }: MembersSettingsPageProps) {
+export default async function MembersSettingsPage(props: MembersSettingsPageProps) {
+    const { tab } = await props.searchParams;
+
+    const { domain } = await props.params;
+
     const org = await getOrgFromDomain(domain);
     if (!org) {
         throw new Error("Organization not found");

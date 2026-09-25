@@ -9,15 +9,17 @@ import { LogoutEscapeHatch } from "@/app/components/logoutEscapeHatch";
 import { env } from "@/env.mjs";
 
 interface OnboardProps {
-    params: {
+    params: Promise<{
         domain: string
-    },
-    searchParams: {
+    }>,
+    searchParams: Promise<{
         step?: string
-    }
+    }>
 }
 
-export default async function Onboard({ params, searchParams }: OnboardProps) {
+export default async function Onboard(props: OnboardProps) {
+    const searchParams = await props.searchParams;
+    const params = await props.params;
     const org = await getOrgFromDomain(params.domain);
 
     if (!org) {

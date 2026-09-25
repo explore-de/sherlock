@@ -7,12 +7,13 @@ import { LogoutEscapeHatch } from '../components/logoutEscapeHatch';
 import { InviteNotFoundCard } from './components/inviteNotFoundCard';
 
 interface RedeemPageProps {
-    searchParams: {
+    searchParams: Promise<{
         invite_id?: string;
-    };
+    }>;
 }
 
-export default async function RedeemPage({ searchParams }: RedeemPageProps) {
+export default async function RedeemPage(props: RedeemPageProps) {
+    const searchParams = await props.searchParams;
     const inviteId = searchParams.invite_id;
     if (!inviteId) {
         return notFound();

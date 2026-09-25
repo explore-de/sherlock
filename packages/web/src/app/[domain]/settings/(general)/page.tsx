@@ -7,12 +7,14 @@ import { ServiceErrorException } from "@/lib/serviceError";
 import { ErrorCode } from "@/lib/errorCodes";
 import { headers } from "next/headers";
 interface GeneralSettingsPageProps {
-    params: {
+    params: Promise<{
         domain: string;
-    }
+    }>
 }
 
-export default async function GeneralSettingsPage({ params: { domain } }: GeneralSettingsPageProps) {
+export default async function GeneralSettingsPage(props: GeneralSettingsPageProps) {
+    const { domain } = await props.params;
+
     const currentUserRole = await getCurrentUserRole(domain)
     if (isServiceError(currentUserRole)) {
         throw new ServiceErrorException(currentUserRole);

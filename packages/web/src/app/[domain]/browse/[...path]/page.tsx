@@ -10,15 +10,14 @@ import { getOrgFromDomain } from "@/data/org";
 import { notFound } from "next/navigation";
 import { ServiceErrorException } from "@/lib/serviceError";
 interface BrowsePageProps {
-    params: {
+    params: Promise<{
         path: string[];
         domain: string;
-    };
+    }>;
 }
 
-export default async function BrowsePage({
-    params,
-}: BrowsePageProps) {
+export default async function BrowsePage(props: BrowsePageProps) {
+    const params = await props.params;
     const rawPath = decodeURIComponent(params.path.join('/'));
     const sentinalIndex = rawPath.search(/\/-\/(tree|blob)\//);
     if (sentinalIndex === -1) {

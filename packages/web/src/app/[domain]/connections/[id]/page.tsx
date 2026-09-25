@@ -22,16 +22,18 @@ import { isServiceError } from "@/lib/utils"
 import { notFound } from "next/navigation"
 import { OrgRole } from "@sourcebot/db"
 interface ConnectionManagementPageProps {
-    params: {
+    params: Promise<{
         domain: string
         id: string
-    },
-    searchParams: {
+    }>,
+    searchParams: Promise<{
         tab: string
-    }
+    }>
 }
 
-export default async function ConnectionManagementPage({ params, searchParams }: ConnectionManagementPageProps) {
+export default async function ConnectionManagementPage(props: ConnectionManagementPageProps) {
+    const searchParams = await props.searchParams;
+    const params = await props.params;
     const connection = await getConnectionByDomain(Number(params.id), params.domain);
     if (!connection) {
         return <NotFound className="flex w-full h-full items-center justify-center" message="Connection not found" />

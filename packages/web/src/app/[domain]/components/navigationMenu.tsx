@@ -42,35 +42,35 @@ export const NavigationMenu = async ({
                     <NavigationMenuBase>
                         <NavigationMenuList>
                             <NavigationMenuItem>
-                                <Link href={`/${domain}`} legacyBehavior passHref>
-                                    <NavigationMenuLink className={navigationMenuTriggerStyle()}>
+                                <NavigationMenuLink asChild className={navigationMenuTriggerStyle()}>
+                                    <Link href={`/${domain}`}>
                                         Search
-                                    </NavigationMenuLink>
-                                </Link>
+                                    </Link>
+                                </NavigationMenuLink>
                             </NavigationMenuItem>
                             <NavigationMenuItem>
-                                <Link href={`/${domain}/repos`} legacyBehavior passHref>
-                                    <NavigationMenuLink className={navigationMenuTriggerStyle()}>
+                                <NavigationMenuLink asChild className={navigationMenuTriggerStyle()}>
+                                    <Link href={`/${domain}/repos`}>
                                         Repositories
-                                    </NavigationMenuLink>
-                                </Link>
+                                    </Link>
+                                </NavigationMenuLink>
                             </NavigationMenuItem>
                             {env.SOURCEBOT_AUTH_ENABLED === 'true' && (
                                 <NavigationMenuItem>
-                                    <Link href={`/${domain}/connections`} legacyBehavior passHref>
-                                        <NavigationMenuLink className={navigationMenuTriggerStyle()}>
+                                    <NavigationMenuLink asChild className={navigationMenuTriggerStyle()}>
+                                        <Link href={`/${domain}/connections`}>
                                             Connections
-                                        </NavigationMenuLink>
-                                    </Link>
+                                        </Link>
+                                    </NavigationMenuLink>
                                 </NavigationMenuItem>
                             )}
                             {env.SOURCEBOT_AUTH_ENABLED === 'true' && (
                                 <NavigationMenuItem>
-                                    <Link href={`/${domain}/settings`} legacyBehavior passHref>
-                                        <NavigationMenuLink className={navigationMenuTriggerStyle()}>
+                                    <NavigationMenuLink asChild className={navigationMenuTriggerStyle()}>
+                                        <Link href={`/${domain}/settings`}>
                                             Settings
-                                        </NavigationMenuLink>
-                                    </Link>
+                                        </Link>
+                                    </NavigationMenuLink>
                                 </NavigationMenuItem>
                             )}
                         </NavigationMenuList>

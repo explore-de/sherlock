@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button"
 import { AlertCircle } from "lucide-react"
 import { SherlockLogo } from "@/app/components/sherlockLogo"
 import { useRouter } from "next/navigation"
+import Link from "next/link"
 
 export default function VerificationFailed() {
   const router = useRouter()
@@ -31,12 +32,12 @@ export default function VerificationFailed() {
       </div>
 
       <div className="mt-8 flex gap-6 text-sm text-gray-500">
-        <a href="/about#help" className="hover:text-gray-300">
+        <Link href="/about#help" className="hover:text-gray-300">
           About
-        </a>
-        <a href="/about#help" className="hover:text-gray-300">
+        </Link>
+        <Link href="/about#help" className="hover:text-gray-300">
           Help
-        </a>
+        </Link>
       </div>
     </div>
   )

@@ -2,13 +2,16 @@ import { auth } from "@/auth";
 import { NavigationMenu } from "../components/navigationMenu";
 import { redirect } from "next/navigation";
 
-export default async function Layout({
-    children,
-    params: { domain },
-}: Readonly<{
-    children: React.ReactNode;
-    params: { domain: string };
-}>) {
+export default async function Layout(
+    props: Readonly<{
+        children: React.ReactNode;
+        params: Promise<{ domain: string }>;
+    }>
+) {
+    const { domain } = await props.params;
+
+    const { children } = props;
+
     const session = await auth();
     if (!session) {
         return redirect(`/${domain}`);

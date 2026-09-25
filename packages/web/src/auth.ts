@@ -13,7 +13,7 @@ import 'next-auth/jwt';
 import type { Provider } from "next-auth/providers";
 import { verifyCredentialsRequestSchema } from './lib/schemas';
 import { createTransport } from 'nodemailer';
-import { render } from '@react-email/render';
+import { render } from 'react-email';
 import MagicLinkEmail from './emails/magicLinkEmail';
 import { SINGLE_TENANT_ORG_ID } from './lib/constants';
 import { roleForNewMember, isTrustedIdentityProvider } from './lib/orgMembership';

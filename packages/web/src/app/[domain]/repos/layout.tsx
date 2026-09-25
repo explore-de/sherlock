@@ -1,12 +1,14 @@
 import { NavigationMenu } from "../components/navigationMenu";
 
-export default function Layout({
-    children,
-    params: { domain },
-}: Readonly<{
-    children: React.ReactNode;
-    params: { domain: string };
-}>) {
+export default async function Layout(
+    props: Readonly<{
+        children: React.ReactNode;
+        params: Promise<{ domain: string }>;
+    }>
+) {
+    const { domain } = await props.params;
+
+    const { children } = props;
 
     return (
         <div className="min-h-screen flex flex-col">
