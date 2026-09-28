@@ -43,10 +43,7 @@ COPY ./packages/schemas ./packages/schemas
 COPY ./packages/crypto ./packages/crypto
 COPY ./packages/error ./packages/error
 
-RUN yarn workspace @sourcebot/db install
-RUN yarn workspace @sourcebot/schemas install
-RUN yarn workspace @sourcebot/crypto install
-RUN yarn workspace @sourcebot/error install
+RUN yarn install
 # ------------------------------------
 
 # ------ Build Web ------
@@ -89,6 +86,7 @@ COPY --from=shared-libs-builder /app/packages/db ./packages/db
 COPY --from=shared-libs-builder /app/packages/schemas ./packages/schemas
 COPY --from=shared-libs-builder /app/packages/crypto ./packages/crypto
 COPY --from=shared-libs-builder /app/packages/error ./packages/error
+COPY --from=shared-libs-builder /app/.yarn/install-state.gz ./.yarn/install-state.gz
 
 # Fixes arm64 timeouts
 RUN yarn workspace @sourcebot/web install
@@ -128,6 +126,7 @@ COPY --from=shared-libs-builder /app/packages/db ./packages/db
 COPY --from=shared-libs-builder /app/packages/schemas ./packages/schemas
 COPY --from=shared-libs-builder /app/packages/crypto ./packages/crypto
 COPY --from=shared-libs-builder /app/packages/error ./packages/error
+COPY --from=shared-libs-builder /app/.yarn/install-state.gz ./.yarn/install-state.gz
 RUN yarn workspace @sourcebot/backend install
 RUN yarn workspace @sourcebot/backend build
 
