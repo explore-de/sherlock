@@ -152,11 +152,15 @@ Do not use upstream Sourcebot images for Sherlock. Fly templates require your ow
 Every pull request to `main` runs:
 
 - `PR Gate`: `yarn npm audit` fails on high or critical advisories in the npm dependencies.
-- `Security`: builds the Docker image, generates a CycloneDX SBOM with Syft and fails when Grype finds a high or critical vulnerability that has a fix. Results appear under *Security → Code scanning*.
+- `Security`: the GitHub dependency review fails when the pull request adds a dependency with a high or critical advisory. The workflow also builds the Docker image, generates a CycloneDX SBOM with Syft and fails when Grype finds a high or critical vulnerability that has a fix. Results appear under *Security → Code scanning*.
 
 Dependabot opens daily update pull requests for npm, the Dockerfile base images and GitHub Actions (`.github/dependabot.yml`).
 
-Pushes to `main` and `v*` tags also publish two SBOMs to Dependency-Track: `explore/sherlock` (npm dependencies) and `ghcr.io/explore-de/sherlock` (image), as version `dev-<run number>` on `main` or the tag without its `v`. Afterwards `scripts/ci/dtrack-version-cleanup.mjs` keeps the published version and the most recent release active and deactivates older versions. This needs the repository secret `DT_API_KEY` with the permissions `BOM_UPLOAD`, `PROJECT_CREATION_UPLOAD`, `VIEW_PORTFOLIO` and `PORTFOLIO_MANAGEMENT`.
+Vulnerability tracking uses only GitHub's built-in tooling and FOSS scanners:
+
+- The npm dependencies reach the GitHub dependency graph through `yarn.lock`. On `main`, the image SBOM is submitted through the dependency submission API as well, so Dependabot alerts also cover the packages inside the image, including the Go modules of the bundled zoekt binaries.
+- `Security` also runs daily on `main`, so the Grype scan uploads fresh code scanning alerts for vulnerabilities disclosed after the last push. That includes OS packages, which Dependabot does not cover.
+- `Publish to ghcr` attaches a signed SBOM attestation to every published image (`gh attestation verify oci://ghcr.io/explore-de/sherlock:<tag> --owner explore-de --predicate-type https://cyclonedx.org/bom`).
 
 ## Identity and integrations
 

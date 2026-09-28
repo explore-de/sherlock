@@ -9,7 +9,6 @@ yarn workspace @sourcebot/backend build
 yarn workspace @sourcebot/web exec tsc --noEmit
 SKIP_ENV_VALIDATION=1 yarn workspace @sourcebot/web lint
 yarn npm audit --all --recursive --severity high
-node --test 'scripts/ci/*.test.mjs'
 ```
 
 Internal workspace and environment names retain their upstream spelling for compatibility. Preserve legal notices and record any vendored updates in FORK.md. Later upstream Sourcebot code must be reviewed for its license before importing it.
