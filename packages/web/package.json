@@ -115,7 +115,7 @@
     "next": "15.5.26",
     "next-auth": "5.0.0-beta.32",
     "next-themes": "^0.4.6",
-    "nodemailer": "^9.1.0",
+    "nodemailer": "^10.0.9",
     "posthog-js": "^1.161.5",
     "pretty-bytes": "^6.1.1",
     "psl": "^1.15.0",
