@@ -68,7 +68,7 @@ jobs:
           tags: sherlock:ci
 
       - name: Generate image SBOM
-        uses: anchore/sbom-action@3ad7283483fc7af8ff2b4ea19663c2d5ca935e26 # v0.24.2
+        uses: anchore/sbom-action@66cbf4bc1f1c0d2edc94016e65bc221b6bb0ad6c # v0.24.3
         with:
           image: sherlock:ci
           format: cyclonedx-json
@@ -86,7 +86,7 @@ jobs:
 
       - name: Generate dependency snapshot
         if: ${{ github.ref == 'refs/heads/main' }}
-        uses: anchore/sbom-action@3ad7283483fc7af8ff2b4ea19663c2d5ca935e26 # v0.24.2
+        uses: anchore/sbom-action@66cbf4bc1f1c0d2edc94016e65bc221b6bb0ad6c # v0.24.3
         with:
           image: sherlock:ci
           format: github-json
@@ -116,7 +116,7 @@ jobs:
       # Fork PRs get a read-only token, so code scanning uploads are only possible for same-repo refs.
       - name: Upload scan results to code scanning
         if: ${{ !cancelled() && steps.scan.outputs.sarif != '' && (github.event_name != 'pull_request' || github.event.pull_request.head.repo.full_name == github.repository) }}
-        uses: github/codeql-action/upload-sarif@2892aa5e19bbd11bc0cff5427e3b750a04d9e3c2 # v4.38.2
+        uses: github/codeql-action/upload-sarif@9b3254085494b55a0f7c4c2b3d2d52cc712ce370 # v4.39.1
         with:
           sarif_file: ${{ steps.scan.outputs.sarif }}
           category: image-scan
