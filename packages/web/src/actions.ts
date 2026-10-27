@@ -713,7 +713,7 @@ export const createInvites = async (emails: string[], domain: string): Promise<{
                         text: `Join ${invite.org.name} on Sherlock by clicking here: ${inviteLink}`,
                     });
 
-                    const failed = result.rejected.concat(result.pending).filter(Boolean);
+                    const failed = [...(result.rejected ?? []), ...(result.pending ?? [])].filter(Boolean);
                     if (failed.length > 0) {
                         console.error(`Failed to send invite email to ${email}: ${failed}`);
                     }
