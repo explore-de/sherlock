@@ -19,7 +19,7 @@ ARG NEXT_PUBLIC_SENTRY_WEBAPP_DSN
 ARG NEXT_PUBLIC_SENTRY_BACKEND_DSN
 
 FROM node:24.21.0-alpine3.24 AS node-alpine
-FROM golang:1.27.1-alpine3.24 AS go-alpine
+FROM golang:1.27.3-alpine3.24 AS go-alpine
 # ----------------------------------
 
 # ------ Build Zoekt ------
@@ -213,10 +213,9 @@ COPY --from=shared-libs-builder /app/packages/error ./packages/error
 # Configure dependencies
 RUN apk add --no-cache git ca-certificates bind-tools tini jansson wget supervisor uuidgen curl perl jq redis postgresql postgresql-contrib openssl util-linux unzip
 
-# Bundled npm in the node base image lags fixed versions of its own deps
-# (brace-expansion, tar, ip-address); bump it in place even though npm is not
-# used at runtime, so CVE scans of the image stay clean.
-RUN npm install -g npm@12.1.0
+# npm is not used at runtime (yarn comes from corepack), and its bundled deps
+# keep lagging fixed versions, so drop it to keep CVE scans of the image clean.
+RUN rm -rf /usr/local/lib/node_modules/npm /usr/local/bin/npm /usr/local/bin/npx
 
 # Configure the database
 RUN mkdir -p /run/postgresql && \
