@@ -211,7 +211,9 @@ COPY --from=shared-libs-builder /app/packages/crypto ./packages/crypto
 COPY --from=shared-libs-builder /app/packages/error ./packages/error
 
 # Configure dependencies
-RUN apk add --no-cache git ca-certificates bind-tools tini jansson wget supervisor uuidgen curl perl jq redis postgresql postgresql-contrib openssl util-linux unzip
+# Upgrade base packages too: Alpine fixes land before the node image is rebuilt.
+RUN apk upgrade --no-cache && \
+    apk add --no-cache git ca-certificates bind-tools tini jansson wget supervisor uuidgen curl perl jq redis postgresql postgresql-contrib openssl util-linux unzip
 
 # npm is not used at runtime (yarn comes from corepack), and its bundled deps
 # keep lagging fixed versions, so drop it to keep CVE scans of the image clean.
