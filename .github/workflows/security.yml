@@ -31,6 +31,23 @@ jobs:
         with:
           fail-on-severity: high
 
+  # Audits the whole lockfile, so it runs on main only: a newly disclosed advisory turns main red
+  # instead of failing unrelated PRs. dependency-review covers what a PR itself adds.
+  audit:
+    if: ${{ github.event_name != 'pull_request' }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+
+      - name: Use Node.js
+        uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
+        with:
+          node-version-file: '.nvmrc'
+
+      - name: Audit dependencies
+        run: corepack enable && yarn npm audit --all --recursive --severity high
+
   image-scan:
     runs-on: ubuntu-latest
     permissions:

@@ -7,7 +7,6 @@
 
 <p align="center">
   <a href="LICENSE"><img alt="license" src="https://img.shields.io/badge/license-MIT-blue"></a>
-  <a href="https://github.com/explore-de/sherlock/actions/workflows/pr-gate.yml"><img alt="PR Gate" src="https://github.com/explore-de/sherlock/actions/workflows/pr-gate.yml/badge.svg"></a>
   <a href="https://github.com/explore-de/sherlock/actions/workflows/test-web.yml"><img alt="Test Web" src="https://github.com/explore-de/sherlock/actions/workflows/test-web.yml/badge.svg"></a>
   <a href="https://github.com/explore-de/sherlock/actions/workflows/test-backend.yml"><img alt="Test Backend" src="https://github.com/explore-de/sherlock/actions/workflows/test-backend.yml/badge.svg"></a>
   <a href="https://github.com/explore-de/sherlock/actions/workflows/security.yml"><img alt="Security" src="https://github.com/explore-de/sherlock/actions/workflows/security.yml/badge.svg"></a>
@@ -151,10 +150,11 @@ Do not use upstream Sourcebot images for Sherlock. Fly templates require your ow
 
 Every pull request to `main` runs:
 
-- `PR Gate`: `yarn npm audit` fails on high or critical advisories in the npm dependencies.
 - `Security`: the GitHub dependency review fails when the pull request adds a dependency with a high or critical advisory. The workflow also builds the Docker image, generates a CycloneDX SBOM with Syft and fails when Grype finds a high or critical vulnerability that has a fix. Results appear under *Security → Code scanning*.
 
-Dependabot opens daily update pull requests for npm, the Dockerfile base images and GitHub Actions (`.github/dependabot.yml`).
+On `main` (every push and daily), `Security` also runs `yarn npm audit`, which fails on any high or critical advisory in the npm dependencies. It does not run on pull requests, so an advisory disclosed after the last push turns `main` red instead of failing unrelated pull requests.
+
+Dependabot opens daily update pull requests for npm, the Dockerfile base images and GitHub Actions (`.github/dependabot.yml`). Minor and patch updates are grouped into one pull request per ecosystem; each major update gets its own.
 
 Vulnerability tracking uses only GitHub's built-in tooling and FOSS scanners:
 
