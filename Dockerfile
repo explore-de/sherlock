@@ -19,7 +19,7 @@ ARG NEXT_PUBLIC_SENTRY_WEBAPP_DSN
 ARG NEXT_PUBLIC_SENTRY_BACKEND_DSN
 
 FROM node:24.21.0-alpine3.24 AS node-alpine
-FROM golang:1.27.1-alpine3.24 AS go-alpine
+FROM golang:1.27.2-alpine3.24 AS go-alpine
 # ----------------------------------
 
 # ------ Build Zoekt ------
