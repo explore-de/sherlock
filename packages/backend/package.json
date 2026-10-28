@@ -27,7 +27,7 @@
         "@logtail/winston": "^0.5.2",
         "@octokit/rest": "^21.0.2",
         "@sentry/cli": "^2.42.2",
-        "@sentry/node": "^10.75.3",
+        "@sentry/node": "^11.0.0",
         "@sentry/profiling-node": "^10.75.3",
         "@sourcebot/crypto": "workspace:*",
         "@sourcebot/db": "workspace:*",
