@@ -4874,7 +4874,7 @@ __metadata:
     npm-run-all: "npm:^4.1.5"
     postcss: "npm:^8"
     posthog-js: "npm:^1.161.5"
-    pretty-bytes: "npm:^6.1.1"
+    pretty-bytes: "npm:^7.2.0"
     psl: "npm:^1.15.0"
     react: "npm:^19.3.0"
     react-device-detect: "npm:^2.2.3"
@@ -11880,10 +11880,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"pretty-bytes@npm:^6.1.1":
-  version: 6.1.1
-  resolution: "pretty-bytes@npm:6.1.1"
-  checksum: 10c0/c7a660b933355f3b4587ad3f001c266a8dd6afd17db9f89ebc50812354bb142df4b9600396ba5999bdb1f9717300387dc311df91895c5f0f2a1780e22495b5f8
+"pretty-bytes@npm:^7.2.0":
+  version: 7.2.0
+  resolution: "pretty-bytes@npm:7.2.0"
+  checksum: 10c0/591b2208b71c26153a08ff3a38f0beec47170985b8ac53508f0349c1f43d9dbf1c3cd7513bf370f7dbced06cb6415780fc4ce7be116ad12070a2be99f931f980
   languageName: node
   linkType: hard
 
