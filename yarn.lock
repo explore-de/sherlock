@@ -1123,7 +1123,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@eslint/js@npm:9.39.5":
+"@eslint/js@npm:9.39.5, @eslint/js@npm:^9.39.5":
   version: 9.39.5
   resolution: "@eslint/js@npm:9.39.5"
   checksum: 10c0/49894e98ba313a7d3bfb1b20d55c0f9826be45a7db876fd84e533ac7f101b1d95b51cd22c6a6db3a45066b9c0d068c31b4a22fa0db8a6cc8744a25540efdb824
@@ -5044,6 +5044,7 @@ __metadata:
     "@codemirror/search": "npm:^6.7.2"
     "@codemirror/state": "npm:^6.7.6"
     "@codemirror/view": "npm:^6.43.15"
+    "@eslint/js": "npm:^9.39.5"
     "@floating-ui/react": "npm:^0.27.20"
     "@hookform/resolvers": "npm:^3.9.0"
     "@iconify/react": "npm:^5.1.0"
@@ -5086,8 +5087,6 @@ __metadata:
     "@types/nodemailer": "npm:^8.0.2"
     "@types/react": "npm:^19.3.0"
     "@types/react-dom": "npm:^19.3.0"
-    "@typescript-eslint/eslint-plugin": "npm:^8.72.0"
-    "@typescript-eslint/parser": "npm:^8.72.0"
     "@uiw/codemirror-themes": "npm:^4.25.12"
     "@uiw/react-codemirror": "npm:^4.25.12"
     "@viz-js/lang-dot": "npm:^1.0.5"
@@ -5121,7 +5120,6 @@ __metadata:
     eslint: "npm:^9.39.5"
     eslint-config-next: "npm:16.4.2"
     eslint-plugin-react: "npm:^7.35.0"
-    eslint-plugin-react-hooks: "npm:^5.0.0"
     fuse.js: "npm:^7.5.0"
     graphql: "npm:^17.0.2"
     http-status-codes: "npm:^2.3.0"
@@ -5583,7 +5581,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@typescript-eslint/eslint-plugin@npm:8.72.1, @typescript-eslint/eslint-plugin@npm:^8.72.0":
+"@typescript-eslint/eslint-plugin@npm:8.72.1":
   version: 8.72.1
   resolution: "@typescript-eslint/eslint-plugin@npm:8.72.1"
   dependencies:
@@ -5603,7 +5601,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@typescript-eslint/parser@npm:8.72.1, @typescript-eslint/parser@npm:^8.72.0":
+"@typescript-eslint/parser@npm:8.72.1":
   version: 8.72.1
   resolution: "@typescript-eslint/parser@npm:8.72.1"
   dependencies:
@@ -8474,15 +8472,6 @@ __metadata:
   peerDependencies:
     eslint: ^3 || ^4 || ^5 || ^6 || ^7 || ^8 || ^9
   checksum: 10c0/d93354e03b0cf66f018d5c50964e074dffe4ddf1f9b535fa020d19c4ae45f89c1a16e9391ca61ac3b19f7042c751ac0d361a056a65cbd1de24718a53ff8daa6e
-  languageName: node
-  linkType: hard
-
-"eslint-plugin-react-hooks@npm:^5.0.0":
-  version: 5.2.0
-  resolution: "eslint-plugin-react-hooks@npm:5.2.0"
-  peerDependencies:
-    eslint: ^3.0.0 || ^4.0.0 || ^5.0.0 || ^6.0.0 || ^7.0.0 || ^8.0.0-0 || ^9.0.0
-  checksum: 10c0/1c8d50fa5984c6dea32470651807d2922cc3934cf3425e78f84a24c2dfd972e7f019bee84aefb27e0cf2c13fea0ac1d4473267727408feeb1c56333ca1489385
   languageName: node
   linkType: hard
 
