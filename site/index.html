@@ -1,0 +1,326 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Sherlock — Self-hosted code search</title>
+    <meta name="description" content="Search and explore code across your repositories, on your own infrastructure.">
+    <meta name="color-scheme" content="dark light">
+    <meta name="theme-color" content="#0f0a17" media="(prefers-color-scheme: dark)">
+    <meta name="theme-color" content="#f7f4f9" media="(prefers-color-scheme: light)">
+
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="Sherlock">
+    <meta property="og:title" content="Sherlock">
+    <meta property="og:description" content="Search and explore code across your repositories, on your own infrastructure.">
+    <meta property="og:image" content="https://explore-de.github.io/sherlock/assets/sherlock-social.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="Sherlock — Your codebase, connected. Search and explore code on your own infrastructure.">
+    <meta name="twitter:card" content="summary_large_image">
+
+    <link rel="icon" type="image/png" href="assets/sherlock-mark.png">
+    <link rel="preload" href="assets/fonts/jersey-10-latin.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header class="site-header">
+        <div class="container header-inner">
+            <a class="brand" href="./" aria-label="Sherlock home">
+                <picture>
+                    <source media="(prefers-color-scheme: dark)" srcset="assets/sherlock-mark.png">
+                    <img src="assets/sherlock-mark-light.png" alt="" width="48" height="28">
+                </picture>
+                <span class="pixel-type">Sherlock</span>
+            </a>
+            <nav class="site-nav" aria-label="Main">
+                <a class="nav-mcp" href="#mcp">MCP</a>
+                <a href="#features">Features</a>
+                <a href="#get-started">Get started</a>
+                <a class="nav-github" href="https://github.com/explore-de/sherlock">GitHub</a>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="hero cyber-grid">
+            <div class="container hero-inner">
+                <a class="announce" href="#mcp">
+                    <span class="announce-tag">MCP</span>
+                    <span>Your AI assistant can search it too</span>
+                    <span aria-hidden="true">→</span>
+                </a>
+                <div class="hero-logo cyber-bloom">
+                    <picture>
+                        <source media="(prefers-color-scheme: dark)" srcset="assets/sherlock-mark.png">
+                        <img class="hero-mark" src="assets/sherlock-mark-light.png" alt="" width="160" height="94">
+                    </picture>
+                    <span class="pixel-type hero-wordmark logo-glow">Sherlock</span>
+                </div>
+
+                <h1>Your codebase, connected.</h1>
+                <p class="lede">Search and explore code. On your own infrastructure.</p>
+
+                <div class="search-demo cyber-focus-glow" aria-hidden="true">
+                    <svg class="search-icon" viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+                    <span class="search-query"><span id="typed">Find something in your code...</span><span class="caret"></span></span>
+                    <kbd>↵</kbd>
+                </div>
+
+                <div class="hero-actions">
+                    <a class="btn btn-primary" href="#get-started">Get started</a>
+                    <a class="btn btn-ghost" href="#mcp">Connect your AI assistant</a>
+                </div>
+
+                <p class="eyebrow"><span class="dot"></span>Self-hosted code search · MCP server built in</p>
+            </div>
+        </section>
+
+        <hr class="cyber-rule">
+
+        <section id="mcp" class="section mcp-section">
+            <div class="container mcp-split">
+                <div>
+                    <p class="section-kicker">Built-in MCP server</p>
+                    <h2>Let your AI assistant read the code.</h2>
+                    <p class="section-lede">
+                        Sherlock speaks the <a href="https://modelcontextprotocol.io">Model Context Protocol</a>,
+                        so your assistant searches every indexed repository directly. Create an API key under
+                        <strong>Settings → API Keys</strong>, then register the server:
+                    </p>
+
+                    <div class="code-block code-block-tight">
+                        <button class="copy-btn" type="button" data-copy="claude mcp add --transport http sherlock https://your-sherlock-host/api/mcp --header &quot;Authorization: Bearer YOUR_KEY&quot;">Copy</button>
+<pre><code><span class="t-prompt">$</span> claude mcp add --transport http sherlock \
+    https://your-sherlock-host/api/mcp \
+    --header <span class="t-str">"Authorization: Bearer YOUR_KEY"</span></code></pre>
+                    </div>
+
+                    <p class="mcp-tools">
+                        <code>search_code</code> <code>get_file</code> <code>list_repos</code> <code>ask_codebase</code>
+                    </p>
+                </div>
+
+                <figure class="chat-window" aria-label="Illustrative example of an assistant using Sherlock over MCP">
+                    <div class="chat-head">
+                        <span class="chat-avatar" aria-hidden="true">
+                            <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M12 2l1.9 6.1L20 10l-6.1 1.9L12 18l-1.9-6.1L4 10l6.1-1.9z"/></svg>
+                        </span>
+                        <span class="chat-title">Assistant</span>
+                        <span class="chat-status"><span class="dot"></span>sherlock connected</span>
+                    </div>
+                    <div class="chat">
+                        <div class="msg msg-user">Where do we retry failed webhook deliveries?</div>
+                        <div class="tool-call">
+                            <span class="tool-name">search_code</span>
+                            <span class="tool-arg">retry webhook lang:typescript</span>
+                        </div>
+                        <div class="msg msg-assistant">
+                            In <code>retryDelivery</code> at <code>deliver.ts:42</code>. It backs off exponentially
+                            and gives up after five attempts.
+                        </div>
+                    </div>
+                    <div class="chat-input" aria-hidden="true">
+                        <span>Ask about your code…</span>
+                        <span class="chat-send">
+                            <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
+                        </span>
+                    </div>
+                </figure>
+            </div>
+        </section>
+
+        <hr class="cyber-rule">
+
+        <section id="features" class="section">
+            <div class="container">
+                <p class="section-kicker">What it does</p>
+                <h2>Every repository, every branch, one search box.</h2>
+                <p class="section-lede">
+                    Sherlock indexes the repositories you point it at and makes them searchable by regular
+                    expression and by symbol, across every branch you choose to index.
+                </p>
+
+                <div class="feature-grid">
+                    <article class="card">
+                        <div class="card-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="6" cy="6" r="2.5"/><circle cx="6" cy="18" r="2.5"/><circle cx="18" cy="8" r="2.5"/><path d="M6 8.5v7M18 10.5c0 4-6 3-11 6"/></svg>
+                        </div>
+                        <h3>Code hosts</h3>
+                        <p>GitHub, GitLab, Gitea and Gerrit, self-hosted or cloud. Whole groups and organizations sync recursively, filtered by topic, with forks or archived repositories excluded.</p>
+                        <ul class="host-logos" aria-label="Supported code hosts">
+                            <li><img class="invert-dark" src="assets/hosts/github.svg" alt="GitHub" width="22" height="22"></li>
+                            <li><img src="assets/hosts/gitlab.svg" alt="GitLab" width="22" height="22"></li>
+                            <li><img src="assets/hosts/gitea.svg" alt="Gitea" width="22" height="22"></li>
+                            <li><img src="assets/hosts/gerrit.svg" alt="Gerrit" width="22" height="22"></li>
+                        </ul>
+                    </article>
+                    <article class="card">
+                        <div class="card-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7h7M4 12h10M4 17h5"/><circle cx="17" cy="15" r="3"/><path d="m21 19-1.8-1.8"/></svg>
+                        </div>
+                        <h3>Search</h3>
+                        <p>Regular expressions, symbol lookup and filters over repository, language and file path, answered by a vendored <a href="https://github.com/sourcebot-dev/zoekt">Zoekt</a>.</p>
+                    </article>
+                    <article class="card">
+                        <div class="card-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="10" width="16" height="10" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></svg>
+                        </div>
+                        <h3>Authentication</h3>
+                        <p>Microsoft Entra ID, GitHub, Google, email codes, or email and password. Off by default; a single environment variable turns it on.</p>
+                    </article>
+                    <article class="card">
+                        <div class="card-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5M10 13l-2 2 2 2M14 13l2 2-2 2"/></svg>
+                        </div>
+                        <h3>Configuration as a file</h3>
+                        <p>Connections live in a JSON file under version control instead of being clicked together in the UI. Sherlock re-reads it when it changes.</p>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <section class="section section-alt">
+            <div class="container split">
+                <div>
+                    <p class="section-kicker">Private by design</p>
+                    <h2>Nothing leaves the machine.</h2>
+                    <p>
+                        Sherlock runs entirely on your own hardware: no repository content, no query, and no
+                        telemetry leaves the machine you deploy it on. Analytics are disabled by default, and
+                        there is no public cloud, update feed or upstream analytics key behind it.
+                    </p>
+                    <ul class="checklist">
+                        <li>Index, database and cache under a single <code>/data</code> volume</li>
+                        <li>Signed SBOM attestation on every published image</li>
+                        <li>Dependency review, Grype image scans and <code>npm audit</code> in CI</li>
+                    </ul>
+                </div>
+                <figure class="code-window">
+                    <figcaption><span></span><span></span><span></span><em>config.json</em></figcaption>
+<pre><code>{
+  <span class="t-key">"connections"</span>: {
+    <span class="t-key">"my-gitlab"</span>: {
+      <span class="t-key">"type"</span>: <span class="t-str">"gitlab"</span>,
+      <span class="t-key">"url"</span>: <span class="t-str">"https://gitlab.example.com"</span>,
+      <span class="t-key">"groups"</span>: [<span class="t-str">"my-group"</span>],
+      <span class="t-key">"token"</span>: { <span class="t-key">"env"</span>: <span class="t-str">"GITLAB_TOKEN"</span> },
+      <span class="t-key">"exclude"</span>: { <span class="t-key">"archived"</span>: <span class="t-lit">true</span>, <span class="t-key">"forks"</span>: <span class="t-lit">true</span> }
+    }
+  }
+}</code></pre>
+                </figure>
+            </div>
+        </section>
+
+        <section id="get-started" class="section">
+            <div class="container">
+                <p class="section-kicker">Get started</p>
+                <h2>Up in two commands.</h2>
+                <p class="section-lede">
+                    Build the image and run it with a volume for persistent storage. The container starts its own
+                    PostgreSQL and Redis unless you point it at external ones.
+                </p>
+
+                <div class="code-block">
+                    <button class="copy-btn" type="button" data-copy="git clone https://github.com/explore-de/sherlock.git &amp;&amp; cd sherlock&#10;docker build -t sherlock:local .&#10;docker run --name sherlock -p 127.0.0.1:3000:3000 -v sherlock-data:/data sherlock:local">Copy</button>
+<pre><code><span class="t-prompt">$</span> git clone https://github.com/explore-de/sherlock.git &amp;&amp; cd sherlock
+<span class="t-prompt">$</span> docker build -t sherlock:local .
+<span class="t-prompt">$</span> docker run --name sherlock -p 127.0.0.1:3000:3000 -v sherlock-data:/data sherlock:local</code></pre>
+                </div>
+
+                <div class="steps">
+                    <div class="step">
+                        <span class="step-num pixel-type">01</span>
+                        <h3>Connect a code host</h3>
+                        <p>Describe what to index in a config file and point <code>CONFIG_PATH</code> at it. Use a dedicated service account token with exactly the read access you intend to expose.</p>
+                    </div>
+                    <div class="step">
+                        <span class="step-num pixel-type">02</span>
+                        <h3>Turn on sign-in</h3>
+                        <p>Set <code>SOURCEBOT_AUTH_ENABLED=true</code> and configure a provider. The first user to sign in owns the organization.</p>
+                    </div>
+                    <div class="step">
+                        <span class="step-num pixel-type">03</span>
+                        <h3>Search</h3>
+                        <p>Open <code>localhost:3000</code> and start digging. For shared deployments, put HTTPS in front before exposing it.</p>
+                    </div>
+                </div>
+
+                <p class="docs-links">
+                    Read more:
+                    <a href="https://github.com/explore-de/sherlock/blob/main/docs/self-hosting/configuration.mdx">Configuration</a>
+                    <a href="https://github.com/explore-de/sherlock/blob/main/docs/self-hosting/more/declarative-config.mdx">Declarative config</a>
+                    <a href="https://github.com/explore-de/sherlock/blob/main/docs/self-hosting/more/authentication.mdx">Authentication</a>
+                    <a href="https://github.com/explore-de/sherlock/blob/main/docs/self-hosting/ai-search.md">AI search</a>
+                </p>
+            </div>
+        </section>
+    </main>
+
+    <hr class="cyber-rule">
+
+    <footer class="site-footer">
+        <div class="container footer-inner">
+            <div class="footer-brand">
+                <span class="pixel-type">Sherlock</span>
+                <p>MIT licensed. An independent project originating from Sourcebot v3.0.4. See
+                    <a href="https://github.com/explore-de/sherlock/blob/main/FORK.md">FORK.md</a> and
+                    <a href="https://github.com/explore-de/sherlock/blob/main/THIRD_PARTY_NOTICES.md">third-party notices</a>.</p>
+            </div>
+            <nav class="footer-nav" aria-label="Footer">
+                <a href="https://github.com/explore-de/sherlock">Source</a>
+                <a href="https://github.com/explore-de/sherlock/blob/main/CONTRIBUTING.md">Contributing</a>
+                <a href="https://github.com/explore-de/sherlock/blob/main/LICENSE">License</a>
+            </nav>
+        </div>
+    </footer>
+
+    <script>
+        // Cycle example queries through the hero search box.
+        (() => {
+            const target = document.getElementById("typed");
+            if (!target || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+            const queries = [
+                "sym:handleRequest lang:typescript",
+                "repo:payments TODO\\(.*\\)",
+                "file:\\.go$ context\\.WithTimeout",
+                "lang:python def \\w+_test",
+            ];
+            let q = 0;
+            const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
+            const run = async () => {
+                await sleep(1600);
+                for (;;) {
+                    const text = queries[q++ % queries.length];
+                    target.textContent = "";
+                    target.classList.add("is-typing");
+                    for (const ch of text) {
+                        target.textContent += ch;
+                        await sleep(55 + Math.random() * 60);
+                    }
+                    await sleep(2200);
+                    while (target.textContent.length) {
+                        target.textContent = target.textContent.slice(0, -1);
+                        await sleep(18);
+                    }
+                    await sleep(400);
+                }
+            };
+            run();
+        })();
+
+        document.querySelectorAll(".copy-btn").forEach((btn) => {
+            btn.addEventListener("click", async () => {
+                try {
+                    await navigator.clipboard.writeText(btn.dataset.copy);
+                    btn.textContent = "Copied";
+                } catch {
+                    btn.textContent = "Failed";
+                }
+                setTimeout(() => (btn.textContent = "Copy"), 1600);
+            });
+        });
+    </script>
+</body>
+</html>
