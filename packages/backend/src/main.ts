@@ -50,7 +50,8 @@ const getSettings = async (configPath?: string) => {
 
 export const main = async (db: PrismaClient, context: AppContext) => {
     const redis = new Redis(env.REDIS_URL, {
-        maxRetriesPerRequest: null
+        maxRetriesPerRequest: null,
+        protocol: 2,
     });
     redis.ping().then(() => {
         logger.info('Connected to redis');
