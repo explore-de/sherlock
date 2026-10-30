@@ -63,12 +63,8 @@ export const SearchResultsPanel = ({
                 return element.scrollHeight;
             } else {
                 const indexKey = Number(element.getAttribute("data-index"));
-                // Unfortunately, the cache is a private property, so we need to
-                // hush the TS compiler.
-                // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-                // @ts-ignore
                 const cacheMeasurement = instance.itemSizeCache.get(indexKey);
-                return cacheMeasurement;
+                return cacheMeasurement ?? element.scrollHeight;
             }
         },
         enabled: true,
@@ -96,7 +92,7 @@ export const SearchResultsPanel = ({
 
         const element = virtualizer.elementsCache.get(lastShowAllMatchesButtonClickIndex);
         element?.setAttribute('data-cache-dirty', 'true');
-        virtualizer.measureElement(element);
+        virtualizer.measureElement(element ?? null);
 
         setLastShowAllMatchesButtonClickIndex(-1);
     }, [lastShowAllMatchesButtonClickIndex, virtualizer]);
