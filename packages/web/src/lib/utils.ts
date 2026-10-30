@@ -20,7 +20,6 @@ export function cn(...inputs: ClassValue[]) {
  */
 export const createPathWithQueryParams = (path: string, ...queryParams: [string, string | null][]) => {
     // Filter out undefined values
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     queryParams = queryParams.filter(([_key, value]) => value !== null);
 
     if (queryParams.length === 0) {
