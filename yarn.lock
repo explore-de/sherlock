@@ -5140,7 +5140,7 @@ __metadata:
     react-dom: "npm:^19.3.1"
     react-email: "npm:^6.11.3"
     react-hook-form: "npm:^7.90.0"
-    react-hotkeys-hook: "npm:^4.5.1"
+    react-hotkeys-hook: "npm:^5.3.3"
     react-icons: "npm:^5.7.0"
     react-resizable-panels: "npm:^2.1.1"
     server-only: "npm:^0.0.1"
@@ -12415,13 +12415,13 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react-hotkeys-hook@npm:^4.5.1":
-  version: 4.6.1
-  resolution: "react-hotkeys-hook@npm:4.6.1"
+"react-hotkeys-hook@npm:^5.3.3":
+  version: 5.3.3
+  resolution: "react-hotkeys-hook@npm:5.3.3"
   peerDependencies:
-    react: ">=16.8.1"
-    react-dom: ">=16.8.1"
-  checksum: 10c0/e23916567b0b863831cf7e2ddba591e82988a3212a9e4b818ac7da6d751b7e8b102f2245d8bf7e9526a97766ffd092efdbfbcc457b74564415f5d5f8ab51919e
+    react: ">=16.8.0"
+    react-dom: ">=16.8.0"
+  checksum: 10c0/311f3b749cdd5ba20832fb2ea97cd94248f25ebe8417f0da2a76be7a2ca0fa94dfd2fe9eb1d399f41305f65937690825d167708f5d5c27652cb90a97ce0dbf06
   languageName: node
   linkType: hard
 
