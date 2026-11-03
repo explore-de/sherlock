@@ -161,7 +161,7 @@ export const SettingsDropdown = ({
                 </DropdownMenuGroup>
                 <DropdownMenuSeparator />
                 <div className="px-2 py-1 text-sm text-muted-foreground">
-                    version: {env.NEXT_PUBLIC_SOURCEBOT_VERSION}
+                    version: {env.NEXT_PUBLIC_SHERLOCK_VERSION}
                 </div>
             </DropdownMenuContent>
         </DropdownMenu>

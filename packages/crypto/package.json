@@ -1,5 +1,5 @@
 {
-  "name": "@sourcebot/crypto",
+  "name": "@sherlock/crypto",
   "version": "0.1.0",
   "main": "dist/index.js",
   "private": true,

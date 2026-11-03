@@ -84,7 +84,7 @@ export default function RootLayout({
             <body>
                 <Toaster />
                 <SessionProvider>
-                    <PostHogProvider disabled={env.SOURCEBOT_TELEMETRY_DISABLED === "true"}>
+                    <PostHogProvider disabled={env.SHERLOCK_TELEMETRY_DISABLED === "true"}>
                         <ThemeProvider
                             attribute="class"
                             defaultTheme="dark"

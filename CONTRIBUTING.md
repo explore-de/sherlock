@@ -3,12 +3,12 @@
 Use the setup instructions in [README.md](README.md). Work on a local branch and run the existing backend and web tests before submitting changes.
 
 ```sh
-yarn workspace @sourcebot/backend test --run
-yarn workspace @sourcebot/web test --run
-yarn workspace @sourcebot/backend build
-yarn workspace @sourcebot/web exec tsc --noEmit
-SKIP_ENV_VALIDATION=1 yarn workspace @sourcebot/web lint
+yarn workspace @sherlock/backend test --run
+yarn workspace @sherlock/web test --run
+yarn workspace @sherlock/backend build
+yarn workspace @sherlock/web exec tsc --noEmit
+SKIP_ENV_VALIDATION=1 yarn workspace @sherlock/web lint
 yarn npm audit --all --recursive --severity high
 ```
 
-Internal workspace and environment names retain their upstream spelling for compatibility. Preserve legal notices and record any vendored updates in FORK.md. Later upstream Sourcebot code must be reviewed for its license before importing it.
+Preserve legal notices and record any vendored updates in FORK.md. Review the license of any code from another project before importing it.

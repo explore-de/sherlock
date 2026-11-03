@@ -1,7 +1,7 @@
 'use client';
 
-import { GiteaConnectionConfig } from "@sourcebot/schemas/v3/gitea.type";
-import { giteaSchema } from "@sourcebot/schemas/v3/gitea.schema";
+import { GiteaConnectionConfig } from "@sherlock/schemas/v3/gitea.type";
+import { giteaSchema } from "@sherlock/schemas/v3/gitea.schema";
 import { giteaQuickActions } from "../../connections/quickActions";
 import SharedConnectionCreationForm from "./sharedConnectionCreationForm";
 

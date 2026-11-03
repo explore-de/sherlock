@@ -13,7 +13,7 @@ import {
     CarouselContent,
     CarouselItem,
 } from "@/components/ui/carousel";
-import { RepoIndexingStatus } from "@sourcebot/db";
+import { RepoIndexingStatus } from "@sherlock/db";
 import { SymbolIcon } from "@radix-ui/react-icons";
 
 export function RepositorySnapshot({ authEnabled }: { authEnabled: boolean }) {

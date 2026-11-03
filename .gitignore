@@ -161,7 +161,7 @@ dist
 
 # End of https://www.toptal.com/developers/gitignore/api/yarn,node
 
-.sourcebot
+.sherlock
 /bin
 /config.json
 .DS_Store

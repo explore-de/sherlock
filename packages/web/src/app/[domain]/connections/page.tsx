@@ -5,7 +5,7 @@ import { getConnections, getOrgMembership } from "@/actions";
 import { isServiceError } from "@/lib/utils";
 import { ServiceErrorException } from "@/lib/serviceError";
 import { notFound } from "next/navigation";
-import { OrgRole } from "@sourcebot/db";
+import { OrgRole } from "@sherlock/db";
 
 export default async function ConnectionsPage(props: { params: Promise<{ domain: string }> }) {
     const { domain } = await props.params;

@@ -22,5 +22,5 @@ jobs:
         run: corepack enable && yarn install --immutable
     
       - name: Test
-        run: yarn workspace @sourcebot/web test --run
+        run: yarn workspace @sherlock/web test --run
     

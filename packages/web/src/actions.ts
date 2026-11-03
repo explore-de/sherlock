@@ -8,14 +8,14 @@ import { prisma } from "@/prisma";
 import { StatusCodes } from "http-status-codes";
 import { ErrorCode } from "@/lib/errorCodes";
 import { isServiceError } from "@/lib/utils";
-import { githubSchema } from "@sourcebot/schemas/v3/github.schema";
-import { gitlabSchema } from "@sourcebot/schemas/v3/gitlab.schema";
-import { giteaSchema } from "@sourcebot/schemas/v3/gitea.schema";
-import { gerritSchema } from "@sourcebot/schemas/v3/gerrit.schema";
-import { ConnectionConfig } from "@sourcebot/schemas/v3/connection.type";
-import { decrypt, encrypt } from "@sourcebot/crypto"
+import { githubSchema } from "@sherlock/schemas/v3/github.schema";
+import { gitlabSchema } from "@sherlock/schemas/v3/gitlab.schema";
+import { giteaSchema } from "@sherlock/schemas/v3/gitea.schema";
+import { gerritSchema } from "@sherlock/schemas/v3/gerrit.schema";
+import { ConnectionConfig } from "@sherlock/schemas/v3/connection.type";
+import { decrypt, encrypt } from "@sherlock/crypto"
 import { getConnection } from "./data/connection";
-import { ConnectionSyncStatus, Prisma, OrgRole, RepoIndexingStatus } from "@sourcebot/db";
+import { ConnectionSyncStatus, Prisma, OrgRole, RepoIndexingStatus } from "@sherlock/db";
 import { cookies, headers } from "next/headers"
 import { Session } from "next-auth";
 import { env } from "@/env.mjs";
@@ -51,8 +51,8 @@ export const withAuth = async <T>(fn: (session: Session) => Promise<T>, allowSin
     const session = await auth();
     if (!session) {
         if (
-            env.SOURCEBOT_TENANCY_MODE === 'single' &&
-            env.SOURCEBOT_AUTH_ENABLED === 'false' &&
+            env.SHERLOCK_TENANCY_MODE === 'single' &&
+            env.SHERLOCK_AUTH_ENABLED === 'false' &&
             allowSingleTenantUnauthedAccess === true
         ) {
             // To allow for unauthed acccess in single-tenant mode, we can
@@ -122,7 +122,7 @@ export const withOrgMembership = async <T>(session: Session, domain: string, fn:
 }
 
 export const withTenancyModeEnforcement = async<T>(mode: TenancyMode, fn: () => Promise<T>) => {
-    if (env.SOURCEBOT_TENANCY_MODE !== mode) {
+    if (env.SHERLOCK_TENANCY_MODE !== mode) {
         return {
             statusCode: StatusCodes.FORBIDDEN,
             errorCode: ErrorCode.ACTION_DISALLOWED_IN_TENANCY_MODE,

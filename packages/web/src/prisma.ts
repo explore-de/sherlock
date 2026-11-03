@@ -1,5 +1,5 @@
 import 'server-only';
-import { PrismaClient } from "@sourcebot/db";
+import { PrismaClient } from "@sherlock/db";
 
 // @see: https://authjs.dev/getting-started/adapters/prisma
 const globalForPrisma = globalThis as unknown as { prisma: PrismaClient }

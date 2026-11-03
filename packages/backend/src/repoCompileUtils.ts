@@ -1,13 +1,13 @@
-import { GithubConnectionConfig } from '@sourcebot/schemas/v3/github.type';
+import { GithubConnectionConfig } from '@sherlock/schemas/v3/github.type';
 import { getGitHubReposFromConfig } from "./github.js";
 import { getGitLabReposFromConfig } from "./gitlab.js";
 import { getGiteaReposFromConfig } from "./gitea.js";
 import { getGerritReposFromConfig } from "./gerrit.js";
-import { Prisma, PrismaClient } from '@sourcebot/db';
+import { Prisma, PrismaClient } from '@sherlock/db';
 import { WithRequired } from "./types.js"
 import { marshalBool } from "./utils.js";
 import { createLogger } from './logger.js';
-import { GerritConnectionConfig, GiteaConnectionConfig, GitlabConnectionConfig } from '@sourcebot/schemas/v3/connection.type';
+import { GerritConnectionConfig, GiteaConnectionConfig, GitlabConnectionConfig } from '@sherlock/schemas/v3/connection.type';
 import { RepoMetadata } from './types.js';
 import path from 'path';
 

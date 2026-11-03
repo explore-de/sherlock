@@ -1,4 +1,4 @@
-import { PrismaClient } from '@sourcebot/db';
+import { PrismaClient } from '@sherlock/db';
 import { createLogger } from "./logger.js";
 import { AppContext } from "./types.js";
 import { DEFAULT_SETTINGS } from './constants.js';
@@ -10,8 +10,8 @@ import { PromClient } from './promClient.js';
 import { isRemotePath } from './utils.js';
 import { readFile } from 'fs/promises';
 import stripJsonComments from 'strip-json-comments';
-import { SherlockConfig } from '@sourcebot/schemas/v3/index.type';
-import { indexSchema } from '@sourcebot/schemas/v3/index.schema';
+import { SherlockConfig } from '@sherlock/schemas/v3/index.type';
+import { indexSchema } from '@sherlock/schemas/v3/index.schema';
 import { Ajv } from "ajv";
 
 const logger = createLogger('main');

@@ -1,8 +1,8 @@
 import { Job, Queue, Worker } from 'bullmq';
 import { Redis } from 'ioredis';
 import { createLogger } from "./logger.js";
-import { Connection, PrismaClient, Repo, RepoToConnection, RepoIndexingStatus } from "@sourcebot/db";
-import { GithubConnectionConfig, GitlabConnectionConfig, GiteaConnectionConfig } from '@sourcebot/schemas/v3/connection.type';
+import { Connection, PrismaClient, Repo, RepoToConnection, RepoIndexingStatus } from "@sherlock/db";
+import { GithubConnectionConfig, GitlabConnectionConfig, GiteaConnectionConfig } from '@sherlock/schemas/v3/connection.type';
 import { AppContext, Settings, repoMetadataSchema } from "./types.js";
 import { getRepoPath, getTokenFromConfig, measure, getShardPrefix } from "./utils.js";
 import { cloneRepository, fetchRepository, upsertGitConfig } from "./git.js";

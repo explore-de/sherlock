@@ -7,14 +7,14 @@
 # in the webapp.
 # @see: https://docs.docker.com/build/building/variables/#scoping
 
-ARG NEXT_PUBLIC_SOURCEBOT_VERSION
+ARG NEXT_PUBLIC_SHERLOCK_VERSION
 # PAPIK = Project API Key
 # Note that this key does not need to be kept secret, so it's not
 # necessary to use Docker build secrets here.
 # @see: https://posthog.com/tutorials/api-capture-events#authenticating-with-the-project-api-key
 ARG NEXT_PUBLIC_POSTHOG_PAPIK
 ARG NEXT_PUBLIC_SENTRY_ENVIRONMENT
-ARG NEXT_PUBLIC_SOURCEBOT_CLOUD_ENVIRONMENT
+ARG NEXT_PUBLIC_SHERLOCK_CLOUD_ENVIRONMENT
 ARG NEXT_PUBLIC_SENTRY_WEBAPP_DSN
 ARG NEXT_PUBLIC_SENTRY_BACKEND_DSN
 
@@ -53,14 +53,14 @@ RUN yarn install
 FROM node-alpine AS web-builder
 ENV SKIP_ENV_VALIDATION=1
 # -----------
-ARG NEXT_PUBLIC_SOURCEBOT_VERSION
-ENV NEXT_PUBLIC_SOURCEBOT_VERSION=$NEXT_PUBLIC_SOURCEBOT_VERSION
+ARG NEXT_PUBLIC_SHERLOCK_VERSION
+ENV NEXT_PUBLIC_SHERLOCK_VERSION=$NEXT_PUBLIC_SHERLOCK_VERSION
 ARG NEXT_PUBLIC_POSTHOG_PAPIK
 ENV NEXT_PUBLIC_POSTHOG_PAPIK=$NEXT_PUBLIC_POSTHOG_PAPIK
 ARG NEXT_PUBLIC_SENTRY_ENVIRONMENT
 ENV NEXT_PUBLIC_SENTRY_ENVIRONMENT=$NEXT_PUBLIC_SENTRY_ENVIRONMENT
-ARG NEXT_PUBLIC_SOURCEBOT_CLOUD_ENVIRONMENT
-ENV NEXT_PUBLIC_SOURCEBOT_CLOUD_ENVIRONMENT=$NEXT_PUBLIC_SOURCEBOT_CLOUD_ENVIRONMENT
+ARG NEXT_PUBLIC_SHERLOCK_CLOUD_ENVIRONMENT
+ENV NEXT_PUBLIC_SHERLOCK_CLOUD_ENVIRONMENT=$NEXT_PUBLIC_SHERLOCK_CLOUD_ENVIRONMENT
 ARG NEXT_PUBLIC_SENTRY_WEBAPP_DSN
 ENV NEXT_PUBLIC_SENTRY_WEBAPP_DSN=$NEXT_PUBLIC_SENTRY_WEBAPP_DSN
 
@@ -72,7 +72,7 @@ ARG SENTRY_ORG
 ENV SENTRY_ORG=$SENTRY_ORG
 ARG SENTRY_WEBAPP_PROJECT
 ENV SENTRY_WEBAPP_PROJECT=$SENTRY_WEBAPP_PROJECT
-ENV SENTRY_RELEASE=$NEXT_PUBLIC_SOURCEBOT_VERSION
+ENV SENTRY_RELEASE=$NEXT_PUBLIC_SHERLOCK_VERSION
 # SMUAT = Source Map Upload Auth Token
 ARG SENTRY_SMUAT
 ENV SENTRY_SMUAT=$SENTRY_SMUAT
@@ -92,10 +92,10 @@ COPY --from=shared-libs-builder /app/packages/error ./packages/error
 COPY --from=shared-libs-builder /app/.yarn/install-state.gz ./.yarn/install-state.gz
 
 # Fixes arm64 timeouts
-RUN yarn workspace @sourcebot/web install
+RUN yarn workspace @sherlock/web install
 
 ENV NEXT_TELEMETRY_DISABLED=1
-RUN yarn workspace @sourcebot/web build
+RUN yarn workspace @sherlock/web build
 ENV SKIP_ENV_VALIDATION=0
 # ------------------------------
 
@@ -103,8 +103,8 @@ ENV SKIP_ENV_VALIDATION=0
 FROM node-alpine AS backend-builder
 ENV SKIP_ENV_VALIDATION=1
 # -----------
-ARG NEXT_PUBLIC_SOURCEBOT_VERSION
-ENV NEXT_PUBLIC_SOURCEBOT_VERSION=$NEXT_PUBLIC_SOURCEBOT_VERSION
+ARG NEXT_PUBLIC_SHERLOCK_VERSION
+ENV NEXT_PUBLIC_SHERLOCK_VERSION=$NEXT_PUBLIC_SHERLOCK_VERSION
 
 # To upload source maps to Sentry, we need to set the following build-time args.
 # It's important that we don't set these for oss builds, otherwise the Sentry
@@ -130,16 +130,16 @@ COPY --from=shared-libs-builder /app/packages/schemas ./packages/schemas
 COPY --from=shared-libs-builder /app/packages/crypto ./packages/crypto
 COPY --from=shared-libs-builder /app/packages/error ./packages/error
 COPY --from=shared-libs-builder /app/.yarn/install-state.gz ./.yarn/install-state.gz
-RUN yarn workspace @sourcebot/backend install
-RUN yarn workspace @sourcebot/backend build
+RUN yarn workspace @sherlock/backend install
+RUN yarn workspace @sherlock/backend build
 
 # Upload source maps to Sentry if we have the necessary build-time args.
-RUN if [ -n "$SENTRY_SMUAT" ] && [ -n "$SENTRY_ORG" ] && [ -n "$SENTRY_BACKEND_PROJECT" ] && [ -n "$NEXT_PUBLIC_SOURCEBOT_VERSION" ]; then \
+RUN if [ -n "$SENTRY_SMUAT" ] && [ -n "$SENTRY_ORG" ] && [ -n "$SENTRY_BACKEND_PROJECT" ] && [ -n "$NEXT_PUBLIC_SHERLOCK_VERSION" ]; then \
     apk add --no-cache curl; \
     curl -sL https://sentry.io/get-cli/ | sh; \
     sentry-cli login --auth-token $SENTRY_SMUAT; \
-    sentry-cli sourcemaps inject --org $SENTRY_ORG --project $SENTRY_BACKEND_PROJECT --release $NEXT_PUBLIC_SOURCEBOT_VERSION ./packages/backend/dist; \
-    sentry-cli sourcemaps upload --org $SENTRY_ORG --project $SENTRY_BACKEND_PROJECT --release $NEXT_PUBLIC_SOURCEBOT_VERSION ./packages/backend/dist; \
+    sentry-cli sourcemaps inject --org $SENTRY_ORG --project $SENTRY_BACKEND_PROJECT --release $NEXT_PUBLIC_SHERLOCK_VERSION ./packages/backend/dist; \
+    sentry-cli sourcemaps upload --org $SENTRY_ORG --project $SENTRY_BACKEND_PROJECT --release $NEXT_PUBLIC_SHERLOCK_VERSION ./packages/backend/dist; \
 fi
 
 ENV SKIP_ENV_VALIDATION=0
@@ -148,8 +148,8 @@ ENV SKIP_ENV_VALIDATION=0
 # ------ Runner ------
 FROM node-alpine AS runner
 # -----------
-ARG NEXT_PUBLIC_SOURCEBOT_VERSION
-ENV NEXT_PUBLIC_SOURCEBOT_VERSION=$NEXT_PUBLIC_SOURCEBOT_VERSION
+ARG NEXT_PUBLIC_SHERLOCK_VERSION
+ENV NEXT_PUBLIC_SHERLOCK_VERSION=$NEXT_PUBLIC_SHERLOCK_VERSION
 ARG NEXT_PUBLIC_POSTHOG_PAPIK
 ENV NEXT_PUBLIC_POSTHOG_PAPIK=$NEXT_PUBLIC_POSTHOG_PAPIK
 ARG NEXT_PUBLIC_SENTRY_ENVIRONMENT
@@ -160,24 +160,18 @@ ARG NEXT_PUBLIC_SENTRY_BACKEND_DSN
 ENV NEXT_PUBLIC_SENTRY_BACKEND_DSN=$NEXT_PUBLIC_SENTRY_BACKEND_DSN
 # -----------
 
-RUN echo "Sherlock Version: $NEXT_PUBLIC_SOURCEBOT_VERSION"
+RUN echo "Sherlock Version: $NEXT_PUBLIC_SHERLOCK_VERSION"
 
 WORKDIR /app
 ENV NODE_ENV=production
 ENV NEXT_TELEMETRY_DISABLED=1
 ENV DATA_DIR=/data
-ENV DATA_CACHE_DIR=$DATA_DIR/.sourcebot
+ENV DATA_CACHE_DIR=$DATA_DIR/.sherlock
 ENV DATABASE_DATA_DIR=$DATA_CACHE_DIR/db
 ENV REDIS_DATA_DIR=$DATA_CACHE_DIR/redis
-ENV DATABASE_URL="postgresql://postgres@localhost:5432/sourcebot"
+ENV DATABASE_URL="postgresql://postgres@localhost:5432/sherlock"
 ENV REDIS_URL="redis://localhost:6379"
 ENV SRC_TENANT_ENFORCEMENT_MODE=strict
-
-# Valid values are: debug, info, warn, error
-ENV SOURCEBOT_LOG_LEVEL=info
-
-# Analytics are disabled by default. Configure your own account before enabling.
-ENV SOURCEBOT_TELEMETRY_DISABLED=true
 
 COPY package.json yarn.lock* .yarnrc.yml LICENSE ./
 COPY vendor/zoekt/LICENSE ./licenses/zoekt-LICENSE
@@ -230,7 +224,7 @@ RUN mkdir -p /run/postgresql && \
 COPY supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 COPY prefix-output.sh ./prefix-output.sh
 RUN chmod +x ./prefix-output.sh
-COPY entrypoint.sh ./entrypoint.sh
+COPY entrypoint.sh legacy-compat.sh ./
 RUN chmod +x ./entrypoint.sh
 
 COPY default-config.json .

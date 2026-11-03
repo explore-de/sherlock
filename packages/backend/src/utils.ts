@@ -1,10 +1,10 @@
 import { Logger } from "winston";
 import { AppContext } from "./types.js";
 import path from 'path';
-import { PrismaClient, Repo } from "@sourcebot/db";
-import { decrypt } from "@sourcebot/crypto";
-import { Token } from "@sourcebot/schemas/v3/shared.type";
-import { BackendException, BackendError } from "@sourcebot/error";
+import { PrismaClient, Repo } from "@sherlock/db";
+import { decrypt } from "@sherlock/crypto";
+import { Token } from "@sherlock/schemas/v3/shared.type";
+import { BackendException, BackendError } from "@sherlock/error";
 import * as Sentry from "@sentry/node";
 
 export const measure = async <T>(cb: () => Promise<T>) => {

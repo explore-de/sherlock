@@ -8,7 +8,7 @@ import { unwrapServiceError } from "@/lib/utils";
 import useCaptureEvent from "@/hooks/useCaptureEvent";
 import { env } from "@/env.mjs";
 import { useQuery } from "@tanstack/react-query";
-import { ConnectionSyncStatus, RepoIndexingStatus } from "@sourcebot/db";
+import { ConnectionSyncStatus, RepoIndexingStatus } from "@sherlock/db";
 import { getConnections } from "@/actions";
 import { getRepos } from "@/actions";
 

@@ -1,5 +1,5 @@
 import { describe, expect, test } from 'vitest';
-import { OrgRole } from '@sourcebot/db';
+import { OrgRole } from '@sherlock/db';
 import { roleForNewMember, isTrustedIdentityProvider } from './orgMembership';
 
 describe('roleForNewMember', () => {

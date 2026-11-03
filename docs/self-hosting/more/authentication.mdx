@@ -4,9 +4,9 @@ sidebarTitle: Authentication
 ---
 
 <Note>Microsoft Entra ID is supported for single sign-on. Discuss additional authentication needs with your [instance administrator](/docs/connections/request-new)</Note>
-<Warning>If you're switching from non-auth, delete the Sherlock cache (the `.sourcebot` folder) before starting.</Warning>
+<Warning>If you're switching from non-auth, delete the Sherlock cache (the `.sherlock` folder) before starting.</Warning>
 
-Sherlock has built-in authentication that gates access to your organization. OAuth, email codes, and email / password are supported. To enable authentication, set the `SOURCEBOT_AUTH_ENABLED` environment variable to `true`.
+Sherlock has built-in authentication that gates access to your organization. OAuth, email codes, and email / password are supported. To enable authentication, set the `SHERLOCK_AUTH_ENABLED` environment variable to `true`.
 When authentication is enabled:
 
 - [Connection managment](/docs/connections/overview) happens through the UI

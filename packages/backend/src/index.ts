@@ -7,7 +7,7 @@ import { mkdir } from 'fs/promises';
 import path from 'path';
 import { AppContext } from "./types.js";
 import { main } from "./main.js"
-import { PrismaClient } from "@sourcebot/db";
+import { PrismaClient } from "@sherlock/db";
 
 // Register handler for normal exit
 process.on('exit', (code) => {
@@ -46,7 +46,7 @@ type Arguments = {
 }
 
 parser.add_argument("--cacheDir", {
-    help: "Path to .sourcebot cache directory",
+    help: "Path to .sherlock cache directory",
     required: true,
 });
 const args = parser.parse_args() as Arguments;

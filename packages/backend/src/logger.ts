@@ -8,7 +8,7 @@ const { combine, colorize, timestamp, prettyPrint, errors, printf, label: labelF
 
 const createLogger = (label: string) => {
     return winston.createLogger({
-        level: env.SOURCEBOT_LOG_LEVEL,
+        level: env.SHERLOCK_LOG_LEVEL,
         format: combine(
             errors({ stack: true }),
             timestamp(),

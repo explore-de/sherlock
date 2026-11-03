@@ -12,7 +12,7 @@ export function captureEvent<E extends PosthogEvent>(event: E, properties: Posth
     options.send_instantly = true;
     posthog.capture(event, {
         ...properties,
-        sourcebot_version: env.NEXT_PUBLIC_SOURCEBOT_VERSION,
+        sherlock_version: env.NEXT_PUBLIC_SHERLOCK_VERSION,
     }, options);
 }
 

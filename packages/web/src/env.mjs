@@ -37,11 +37,11 @@ export const env = createEnv({
         // Misc
         CONFIG_MAX_REPOS_NO_TOKEN: numberSchema.default(Number.MAX_SAFE_INTEGER),
         NODE_ENV: z.enum(["development", "test", "production"]),
-        SOURCEBOT_TELEMETRY_DISABLED: booleanSchema.default("true"),
+        SHERLOCK_TELEMETRY_DISABLED: booleanSchema.default("true"),
         DATABASE_URL: z.string().url(),
 
-        SOURCEBOT_TENANCY_MODE: tenancyModeSchema.default("single"),
-        SOURCEBOT_AUTH_ENABLED: booleanSchema.default('false'),
+        SHERLOCK_TENANCY_MODE: tenancyModeSchema.default("single"),
+        SHERLOCK_AUTH_ENABLED: booleanSchema.default('false'),
         CONFIG_PATH: z.string().optional(),
 
         // Misc UI flags
@@ -56,17 +56,17 @@ export const env = createEnv({
         NEXT_PUBLIC_POSTHOG_PAPIK: z.string().optional(),
 
         // Misc
-        NEXT_PUBLIC_SOURCEBOT_VERSION: z.string().default('unknown'),
+        NEXT_PUBLIC_SHERLOCK_VERSION: z.string().default('unknown'),
         NEXT_PUBLIC_POLLING_INTERVAL_MS: numberSchema.default(5000),
 
-        NEXT_PUBLIC_SOURCEBOT_CLOUD_ENVIRONMENT: z.enum(["dev", "demo", "staging", "prod"]).optional(),
+        NEXT_PUBLIC_SHERLOCK_CLOUD_ENVIRONMENT: z.enum(["dev", "demo", "staging", "prod"]).optional(),
     },
     // For Next.js >= 13.4.4, you only need to destructure client variables:
     experimental__runtimeEnv: {
         NEXT_PUBLIC_POSTHOG_PAPIK: process.env.NEXT_PUBLIC_POSTHOG_PAPIK,
-        NEXT_PUBLIC_SOURCEBOT_VERSION: process.env.NEXT_PUBLIC_SOURCEBOT_VERSION,
+        NEXT_PUBLIC_SHERLOCK_VERSION: process.env.NEXT_PUBLIC_SHERLOCK_VERSION,
         NEXT_PUBLIC_POLLING_INTERVAL_MS: process.env.NEXT_PUBLIC_POLLING_INTERVAL_MS,
-        NEXT_PUBLIC_SOURCEBOT_CLOUD_ENVIRONMENT: process.env.NEXT_PUBLIC_SOURCEBOT_CLOUD_ENVIRONMENT,
+        NEXT_PUBLIC_SHERLOCK_CLOUD_ENVIRONMENT: process.env.NEXT_PUBLIC_SHERLOCK_CLOUD_ENVIRONMENT,
     },
     skipValidation: process.env.SKIP_ENV_VALIDATION === "1",
     emptyStringAsUndefined: true,

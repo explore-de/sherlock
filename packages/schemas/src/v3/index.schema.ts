@@ -165,7 +165,7 @@ const schema = {
                       "my-org-name"
                     ],
                     [
-                      "sourcebot-dev",
+                      "example-org",
                       "commaai"
                     ]
                   ],

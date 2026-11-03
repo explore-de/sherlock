@@ -16,12 +16,12 @@ export async function middleware(request: NextRequest) {
         return NextResponse.next();
     }
 
-    if (env.SOURCEBOT_TENANCY_MODE !== 'single') {
+    if (env.SHERLOCK_TENANCY_MODE !== 'single') {
         return NextResponse.next();
     }
 
     // Enable these domains when auth is enabled.
-    if (env.SOURCEBOT_AUTH_ENABLED === 'true' &&
+    if (env.SHERLOCK_AUTH_ENABLED === 'true' &&
         (
             url.pathname.startsWith('/login') ||
             url.pathname.startsWith('/redeem')

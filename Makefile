@@ -28,10 +28,10 @@ clean:
 		packages/crypto/dist \
 		packages/error/node_modules \
 		packages/error/dist \
-		.sourcebot
+		.sherlock
 
 soft-reset:
-	rm -rf .sourcebot
+	rm -rf .sherlock
 	redis-cli FLUSHALL
 
 

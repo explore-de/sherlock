@@ -8,7 +8,7 @@ import { useState } from "react"
 import { Badge } from "@/components/ui/badge"
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip"
 import { cn, getCodeHostIcon, CodeHostType } from "@/lib/utils"
-import { RepoIndexingStatus } from "@sourcebot/db";
+import { RepoIndexingStatus } from "@sherlock/db";
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu"
 import { AddRepoButton } from "./addRepoButton"
 

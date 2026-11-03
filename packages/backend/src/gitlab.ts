@@ -1,9 +1,9 @@
 import { Gitlab, ProjectSchema } from "@gitbeaker/rest";
 import micromatch from "micromatch";
 import { createLogger } from "./logger.js";
-import { GitlabConnectionConfig } from "@sourcebot/schemas/v3/gitlab.type"
+import { GitlabConnectionConfig } from "@sherlock/schemas/v3/gitlab.type"
 import { getTokenFromConfig, measure, fetchWithRetry } from "./utils.js";
-import { PrismaClient } from "@sourcebot/db";
+import { PrismaClient } from "@sherlock/db";
 import { processPromiseResults, throwIfAnyFailed } from "./connectionUtils.js";
 import * as Sentry from "@sentry/node";
 import { env } from "./env.js";

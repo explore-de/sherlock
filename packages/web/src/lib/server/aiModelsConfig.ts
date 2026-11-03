@@ -1,9 +1,9 @@
 import Ajv from 'ajv';
 import { readFile } from 'fs/promises';
 import stripJsonComments from 'strip-json-comments';
-import { indexSchema } from '@sourcebot/schemas/v3/index.schema';
-import { SherlockConfig } from '@sourcebot/schemas/v3/index.type';
-import { ModelConfig } from '@sourcebot/schemas/v3/model.type';
+import { indexSchema } from '@sherlock/schemas/v3/index.schema';
+import { SherlockConfig } from '@sherlock/schemas/v3/index.type';
+import { ModelConfig } from '@sherlock/schemas/v3/model.type';
 import { env } from '@/env.mjs';
 
 export type AiModelConfig = ModelConfig & {

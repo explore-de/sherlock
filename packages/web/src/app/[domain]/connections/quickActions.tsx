@@ -1,8 +1,8 @@
-import { GithubConnectionConfig } from "@sourcebot/schemas/v3/github.type"
-import { GitlabConnectionConfig } from "@sourcebot/schemas/v3/gitlab.type";
+import { GithubConnectionConfig } from "@sherlock/schemas/v3/github.type"
+import { GitlabConnectionConfig } from "@sherlock/schemas/v3/gitlab.type";
 import { QuickAction } from "../components/configEditor";
-import { GiteaConnectionConfig } from "@sourcebot/schemas/v3/connection.type";
-import { GerritConnectionConfig } from "@sourcebot/schemas/v3/gerrit.type";
+import { GiteaConnectionConfig } from "@sherlock/schemas/v3/connection.type";
+import { GerritConnectionConfig } from "@sherlock/schemas/v3/gerrit.type";
 import { cn } from "@/lib/utils";
 
 const Code = ({ children, className, title }: { children: React.ReactNode, className?: string, title?: string }) => {
@@ -33,7 +33,6 @@ export const githubQuickActions: QuickAction<GithubConnectionConfig>[] = [
                 <span className="text-sm mt-2 mb-1">Examples:</span>
                 <div className="flex flex-col gap-1">
                     {[
-                        "sourcebot/sourcebot",
                         "vercel/next.js",
                         "torvalds/linux"
                     ].map((repo) => (
@@ -60,7 +59,6 @@ export const githubQuickActions: QuickAction<GithubConnectionConfig>[] = [
                 <div className="flex flex-row gap-1 items-center">
                     {[
                         "commaai",
-                        "sourcebot",
                         "vercel"
                     ].map((org) => (
                         <Code key={org}>{org}</Code>

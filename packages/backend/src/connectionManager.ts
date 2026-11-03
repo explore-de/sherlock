@@ -1,11 +1,11 @@
-import { Connection, ConnectionSyncStatus, PrismaClient, Prisma } from "@sourcebot/db";
+import { Connection, ConnectionSyncStatus, PrismaClient, Prisma } from "@sherlock/db";
 import { Job, Queue, Worker } from 'bullmq';
 import { Settings } from "./types.js";
-import { ConnectionConfig } from "@sourcebot/schemas/v3/connection.type";
+import { ConnectionConfig } from "@sherlock/schemas/v3/connection.type";
 import { createLogger } from "./logger.js";
 import { Redis } from 'ioredis';
 import { RepoData, compileGithubConfig, compileGitlabConfig, compileGiteaConfig, compileGerritConfig } from "./repoCompileUtils.js";
-import { BackendError, BackendException } from "@sourcebot/error";
+import { BackendError, BackendException } from "@sherlock/error";
 import { captureEvent } from "./posthog.js";
 import { env } from "./env.js";
 import * as Sentry from "@sentry/node";

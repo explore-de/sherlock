@@ -30,7 +30,7 @@ export const NavigationMenu = async ({
                         />
                     </Link>
 
-                    {env.SOURCEBOT_TENANCY_MODE === 'multi' && (
+                    {env.SHERLOCK_TENANCY_MODE === 'multi' && (
                         <>
                             <OrgSelector
                                 domain={domain}
@@ -55,7 +55,7 @@ export const NavigationMenu = async ({
                                     </Link>
                                 </NavigationMenuLink>
                             </NavigationMenuItem>
-                            {env.SOURCEBOT_AUTH_ENABLED === 'true' && (
+                            {env.SHERLOCK_AUTH_ENABLED === 'true' && (
                                 <NavigationMenuItem>
                                     <NavigationMenuLink asChild className={navigationMenuTriggerStyle()}>
                                         <Link href={`/${domain}/connections`}>
@@ -64,7 +64,7 @@ export const NavigationMenu = async ({
                                     </NavigationMenuLink>
                                 </NavigationMenuItem>
                             )}
-                            {env.SOURCEBOT_AUTH_ENABLED === 'true' && (
+                            {env.SHERLOCK_AUTH_ENABLED === 'true' && (
                                 <NavigationMenuItem>
                                     <NavigationMenuLink asChild className={navigationMenuTriggerStyle()}>
                                         <Link href={`/${domain}/settings`}>
@@ -84,7 +84,7 @@ export const NavigationMenu = async ({
 
 
                     <Link href="/about" className="px-2 text-sm">About Sherlock</Link>
-                    <SettingsDropdown displaySettingsOption={env.SOURCEBOT_AUTH_ENABLED === 'true'} />
+                    <SettingsDropdown displaySettingsOption={env.SHERLOCK_AUTH_ENABLED === 'true'} />
                 </div>
             </div>
             <hr className="cyber-rule" />

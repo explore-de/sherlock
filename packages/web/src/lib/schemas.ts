@@ -1,5 +1,5 @@
 import { checkIfOrgDomainExists } from "@/actions";
-import { RepoIndexingStatus } from "@sourcebot/db";
+import { RepoIndexingStatus } from "@sherlock/db";
 import { z } from "zod";
 import { isServiceError } from "./utils";
 export const searchRequestSchema = z.object({
@@ -9,7 +9,7 @@ export const searchRequestSchema = z.object({
 });
 
 
-// @see : https://github.com/sourcebot-dev/zoekt/blob/main/api.go#L212
+// @see : vendor/zoekt/api.go
 export const locationSchema = z.object({
     // 0-based byte offset from the beginning of the file
     ByteOffset: z.number(),
@@ -24,7 +24,7 @@ export const rangeSchema = z.object({
     End: locationSchema,
 });
 
-// @see : https://github.com/sourcebot-dev/zoekt/blob/3780e68cdb537d5a7ed2c84d9b3784f80c7c5d04/api.go#L350
+// @see : vendor/zoekt/api.go
 export const searchResponseStats = {
     ContentBytesLoaded: z.number(),
     IndexBytesLoaded: z.number(),
@@ -55,7 +55,7 @@ export const symbolSchema = z.object({
     ParentKind: z.string(),
 });
 
-// @see : https://github.com/sourcebot-dev/zoekt/blob/3780e68cdb537d5a7ed2c84d9b3784f80c7c5d04/api.go#L497
+// @see : vendor/zoekt/api.go
 export const zoektSearchResponseSchema = z.object({
     Result: z.object({
         ...searchResponseStats,
@@ -137,7 +137,7 @@ export const secreteDeleteRequestSchema = z.object({
 });
 
 
-// @see : https://github.com/sourcebot-dev/zoekt/blob/3780e68cdb537d5a7ed2c84d9b3784f80c7c5d04/api.go#L728
+// @see : vendor/zoekt/api.go
 const repoStatsSchema = z.object({
     Repos: z.number(),
     Shards: z.number(),
@@ -149,7 +149,7 @@ const repoStatsSchema = z.object({
     OtherBranchesNewLinesCount: z.number(),
 });
 
-// @see : https://github.com/sourcebot-dev/zoekt/blob/3780e68cdb537d5a7ed2c84d9b3784f80c7c5d04/api.go#L716
+// @see : vendor/zoekt/api.go
 const indexMetadataSchema = z.object({
     IndexFormatVersion: z.number(),
     IndexFeatureVersion: z.number(),
@@ -161,7 +161,7 @@ const indexMetadataSchema = z.object({
     ID: z.string(),
 });
 
-// @see : https://github.com/sourcebot-dev/zoekt/blob/3780e68cdb537d5a7ed2c84d9b3784f80c7c5d04/api.go#L555
+// @see : vendor/zoekt/api.go
 export const repositorySchema = z.object({
     Name: z.string(),
     URL: z.string(),

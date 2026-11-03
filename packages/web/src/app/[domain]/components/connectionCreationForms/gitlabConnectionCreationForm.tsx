@@ -1,7 +1,7 @@
 'use client';
 
-import { GitlabConnectionConfig } from "@sourcebot/schemas/v3/gitlab.type";
-import { gitlabSchema } from "@sourcebot/schemas/v3/gitlab.schema";
+import { GitlabConnectionConfig } from "@sherlock/schemas/v3/gitlab.type";
+import { gitlabSchema } from "@sherlock/schemas/v3/gitlab.schema";
 import { gitlabQuickActions } from "../../connections/quickActions";
 import SharedConnectionCreationForm from "./sharedConnectionCreationForm";
 

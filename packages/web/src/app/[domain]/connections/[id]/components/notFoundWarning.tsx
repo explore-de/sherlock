@@ -1,7 +1,7 @@
 'use client';
 
 import { AlertTriangle } from "lucide-react"
-import { Prisma, ConnectionSyncStatus } from "@sourcebot/db"
+import { Prisma, ConnectionSyncStatus } from "@sherlock/db"
 import { SyncStatusMetadataSchema } from "@/lib/syncStatusMetadataSchema"
 import useCaptureEvent from "@/hooks/useCaptureEvent";
 import { ReloadIcon } from "@radix-ui/react-icons";

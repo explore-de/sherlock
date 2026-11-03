@@ -11,8 +11,6 @@ export default function AboutPage() {
             <p>Setup and configuration guides are included in the project’s README and docs directory.</p></section>
         <section id="privacy" className="space-y-3"><h2 className="text-xl font-semibold">Your deployment</h2>
             <p>Your instance administrator manages hosting, access, data retention, and any external integrations. Analytics are disabled by default. Ask your administrator for the policies that apply to this deployment.</p></section>
-        <section className="space-y-3"><h2 className="text-xl font-semibold">Open-source origins</h2>
-            <p>Sherlock originated from <a className="underline" href="https://github.com/sourcebot-dev/sourcebot/tree/c201a5e1a976002c565f21fb723c4ad51ef38000">Sourcebot v3.0.4</a>, released under the MIT license. Sherlock is an independent project. Third-party components retain their own licenses.</p></section>
         <Link className="underline" href="/">Open Sherlock</Link>
     </main>;
 }

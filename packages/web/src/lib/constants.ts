@@ -10,7 +10,7 @@ export enum OnboardingSteps {
 export const MOBILE_UNSUPPORTED_SPLASH_SCREEN_DISMISSED_COOKIE_NAME = 'sb.mobile-unsupported-splash-screen-dismissed';
 
 export const SINGLE_TENANT_USER_ID = '1';
-export const SINGLE_TENANT_USER_EMAIL = 'default@sourcebot.dev'; // Legacy internal identity; never used as a support destination
+export const SINGLE_TENANT_USER_EMAIL = 'default@sherlock.invalid'; // Internal identity; never used as a support destination
 export const SINGLE_TENANT_ORG_ID = 1;
 export const SINGLE_TENANT_ORG_DOMAIN = '~';
 export const SINGLE_TENANT_ORG_NAME = 'default';

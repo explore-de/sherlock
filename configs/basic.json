@@ -6,7 +6,7 @@
         // From GitHub, include:
         // - all public repos owned by user `torvalds`
         // - all public repos owned by organization `commai`
-        // - repo `sourcebot-dev/sourcebot`
+        // - repo `example-org/example-repo`
         "example-1": {
             "type": "github",
             "users": [
@@ -16,7 +16,7 @@
                 "commaai"
             ],
             "repos": [
-                "sourcebot-dev/sourcebot"
+                "example-org/example-repo"
             ]
         },
         // From GitLab, include:

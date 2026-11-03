@@ -8,7 +8,7 @@ import EmailProvider from "next-auth/providers/nodemailer";
 import { PrismaAdapter } from "@auth/prisma-adapter"
 import { prisma } from "@/prisma";
 import { env } from "@/env.mjs";
-import { User } from '@sourcebot/db';
+import { User } from '@sherlock/db';
 import 'next-auth/jwt';
 import type { Provider } from "next-auth/providers";
 import { verifyCredentialsRequestSchema } from './lib/schemas';
@@ -157,8 +157,8 @@ const onCreateUser = async ({ user, provider }: { user: AuthJsUser, provider: st
     // vouched for them: credentials signup creates an account for any email
     // and password it is handed, so it must never grant org access by itself.
     if (
-        env.SOURCEBOT_TENANCY_MODE === 'single' &&
-        env.SOURCEBOT_AUTH_ENABLED === 'true'
+        env.SHERLOCK_TENANCY_MODE === 'single' &&
+        env.SHERLOCK_AUTH_ENABLED === 'true'
     ) {
         await prisma.$transaction(async (tx) => {
             const defaultOrg = await tx.org.findUnique({

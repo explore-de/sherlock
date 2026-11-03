@@ -1,5 +1,5 @@
 // List of supported query prefixes in zoekt.
-// @see : https://github.com/sourcebot-dev/zoekt/blob/main/query/parse.go#L417
+// @see : vendor/zoekt/query/parse.go
 export enum zoektPrefixes {
     archived = "archived:",
     branchShort = "b:",

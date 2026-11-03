@@ -1,7 +1,7 @@
 'use client';
 
-import { GerritConnectionConfig } from "@sourcebot/schemas/v3/gerrit.type";
-import { gerritSchema } from "@sourcebot/schemas/v3/gerrit.schema";
+import { GerritConnectionConfig } from "@sherlock/schemas/v3/gerrit.type";
+import { gerritSchema } from "@sherlock/schemas/v3/gerrit.schema";
 import { gerritQuickActions } from "../../connections/quickActions";
 import SharedConnectionCreationForm from "./sharedConnectionCreationForm";
 

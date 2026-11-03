@@ -10,4 +10,4 @@ dotenv.config({
 });
 
 // @note: You can use https://generate-random.org/encryption-key-generator to create a new 32 byte key
-export const SOURCEBOT_ENCRYPTION_KEY = getEnv(process.env.SOURCEBOT_ENCRYPTION_KEY);
+export const SHERLOCK_ENCRYPTION_KEY = getEnv(process.env.SHERLOCK_ENCRYPTION_KEY);

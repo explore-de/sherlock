@@ -1,4 +1,4 @@
-import { Settings as SettingsSchema } from "@sourcebot/schemas/v3/index.type";
+import { Settings as SettingsSchema } from "@sherlock/schemas/v3/index.type";
 import { z } from "zod";
 
 export type AppContext = {

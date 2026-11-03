@@ -33,7 +33,7 @@ export const search = async ({ query, maxMatchDisplayCount, whole}: SearchReques
 
     const body = JSON.stringify({
         q: query,
-        // @see: https://github.com/sourcebot-dev/zoekt/blob/main/api.go#L892
+        // @see: vendor/zoekt/api.go
         opts: {
             NumContextLines: 2,
             ChunkMatches: true,

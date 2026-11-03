@@ -1,4 +1,4 @@
-import type { Prisma } from '@sourcebot/db';
+import type { Prisma } from '@sherlock/db';
 
 import { hashApiKey } from '../apiKey';
 

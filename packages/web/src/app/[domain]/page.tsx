@@ -37,7 +37,7 @@ export default async function Home(props: { params: Promise<{ domain: string }> 
                     className="cyber-focus-glow mt-6 w-full max-w-[800px] transition-shadow"
                 />
                 <div className="mt-8">
-                    <RepositorySnapshot authEnabled={env.SOURCEBOT_AUTH_ENABLED === 'true'} />
+                    <RepositorySnapshot authEnabled={env.SHERLOCK_AUTH_ENABLED === 'true'} />
                 </div>
                 <div className="flex flex-col items-center w-fit gap-6">
                     <hr className="cyber-rule mt-5 w-full" />

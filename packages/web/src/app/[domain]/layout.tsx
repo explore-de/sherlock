@@ -26,7 +26,7 @@ export default async function Layout(props: LayoutProps) {
         return notFound();
     }
 
-    if (env.SOURCEBOT_AUTH_ENABLED === 'true') {
+    if (env.SHERLOCK_AUTH_ENABLED === 'true') {
         const session = await auth();
         if (!session) {
             redirect('/login');

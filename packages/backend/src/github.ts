@@ -1,10 +1,10 @@
 import { Octokit } from "@octokit/rest";
-import { GithubConnectionConfig } from "@sourcebot/schemas/v3/github.type";
+import { GithubConnectionConfig } from "@sherlock/schemas/v3/github.type";
 import { createLogger } from "./logger.js";
 import { getTokenFromConfig, measure, fetchWithRetry } from "./utils.js";
 import micromatch from "micromatch";
-import { PrismaClient } from "@sourcebot/db";
-import { BackendException, BackendError } from "@sourcebot/error";
+import { PrismaClient } from "@sherlock/db";
+import { BackendException, BackendError } from "@sherlock/error";
 import { processPromiseResults, throwIfAnyFailed } from "./connectionUtils.js";
 import * as Sentry from "@sentry/node";
 import { env } from "./env.js";

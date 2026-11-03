@@ -181,7 +181,7 @@ test('completeSuggestion wraps suggestions in quotes when the suggestion contain
 });
 
 test('completeSuggestion completes on query parts that are inbetween other parts', () => {
-    const part1 = String.raw`repo:^github\.com/sourcebot\x2ddev/sourcebot$`;
+    const part1 = String.raw`repo:^github\.com/example\x2dorg/repo$`;
     const suggestionQuery = 'Type';
     const part2 = String.raw`lang:${suggestionQuery}`;
     const part3 = String.raw`case:auto`;
@@ -209,13 +209,13 @@ test('completeSuggestions regex escapes suggestions when regexEscaped is true', 
     const { newQuery, newCursorPosition } = completeSuggestion({
         query,
         suggestionQuery: "github",
-        suggestion: "github.com/sourcebot-dev/sourcebot",
+        suggestion: "github.com/example-org/repo",
         trailingSpace: true,
         regexEscaped: true,
         cursorPosition: query.length,
     });
 
-    const expectedNewQuery = String.raw`repo:^github\.com/sourcebot\x2ddev/sourcebot$ `;
+    const expectedNewQuery = String.raw`repo:^github\.com/example\x2dorg/repo$ `;
     expect(newQuery).toEqual(expectedNewQuery);
     expect(newCursorPosition).toBe(newQuery.length);
 });

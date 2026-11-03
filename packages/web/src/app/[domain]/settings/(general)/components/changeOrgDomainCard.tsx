@@ -12,7 +12,7 @@ import { useDomain } from "@/hooks/useDomain";
 import { orgDomainSchema } from "@/lib/schemas";
 import { isServiceError } from "@/lib/utils";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { OrgRole } from "@sourcebot/db";
+import { OrgRole } from "@sherlock/db";
 import { Loader2, TriangleAlert } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { useCallback, useState } from "react";

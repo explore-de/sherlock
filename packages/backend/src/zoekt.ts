@@ -1,6 +1,6 @@
 import { exec } from "child_process";
 import { AppContext, repoMetadataSchema, Settings } from "./types.js";
-import { Repo } from "@sourcebot/db";
+import { Repo } from "@sherlock/db";
 import { getRepoPath } from "./utils.js";
 import { getShardPrefix } from "./utils.js";
 import { getBranches, getTags } from "./git.js";

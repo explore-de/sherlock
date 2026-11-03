@@ -1,5 +1,5 @@
 import crypto from 'crypto';
-import { SOURCEBOT_ENCRYPTION_KEY } from './environment';
+import { SHERLOCK_ENCRYPTION_KEY } from './environment';
 
 const algorithm = 'aes-256-cbc';
 const ivLength = 16; // 16 bytes for CBC
@@ -9,11 +9,11 @@ const generateIV = (): Buffer => {
 };
 
 export function encrypt(text: string): { iv: string; encryptedData: string } {
-    if (!SOURCEBOT_ENCRYPTION_KEY) {
+    if (!SHERLOCK_ENCRYPTION_KEY) {
         throw new Error('Encryption key is not set');
     }
 
-    const encryptionKey = Buffer.from(SOURCEBOT_ENCRYPTION_KEY, 'ascii');
+    const encryptionKey = Buffer.from(SHERLOCK_ENCRYPTION_KEY, 'ascii');
 
     const iv = generateIV();
     const cipher = crypto.createCipheriv(algorithm, encryptionKey, iv);
@@ -25,11 +25,11 @@ export function encrypt(text: string): { iv: string; encryptedData: string } {
 }
 
 export function decrypt(iv: string, encryptedText: string): string {
-    if (!SOURCEBOT_ENCRYPTION_KEY) {
+    if (!SHERLOCK_ENCRYPTION_KEY) {
         throw new Error('Encryption key is not set');
     }
 
-    const encryptionKey = Buffer.from(SOURCEBOT_ENCRYPTION_KEY, 'ascii');
+    const encryptionKey = Buffer.from(SHERLOCK_ENCRYPTION_KEY, 'ascii');
 
     const ivBuffer = Buffer.from(iv, 'hex');
     const encryptedBuffer = Buffer.from(encryptedText, 'hex');

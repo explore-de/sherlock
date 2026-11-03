@@ -1,6 +1,6 @@
 'use client';
 
-import { OrgRole } from "@sourcebot/db";
+import { OrgRole } from "@sherlock/db";
 import { useToast } from "@/components/hooks/use-toast";
 import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, AlertDialogDescription, AlertDialogFooter, AlertDialogHeader, AlertDialogTitle } from "@/components/ui/alert-dialog";
 import { Avatar, AvatarImage } from "@/components/ui/avatar";

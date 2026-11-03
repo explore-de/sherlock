@@ -1,10 +1,10 @@
 import { Api, giteaApi, HttpResponse, Repository as GiteaRepository } from 'gitea-js';
-import { GiteaConnectionConfig } from '@sourcebot/schemas/v3/gitea.type';
+import { GiteaConnectionConfig } from '@sherlock/schemas/v3/gitea.type';
 import { getTokenFromConfig, measure } from './utils.js';
 import fetch from 'cross-fetch';
 import { createLogger } from './logger.js';
 import micromatch from 'micromatch';
-import { PrismaClient } from '@sourcebot/db';
+import { PrismaClient } from '@sherlock/db';
 import { processPromiseResults, throwIfAnyFailed } from './connectionUtils.js';
 import * as Sentry from "@sentry/node";
 import { env } from './env.js';

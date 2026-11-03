@@ -20,7 +20,7 @@ import { Overview } from "./components/overview"
 import { getOrgMembership } from "@/actions"
 import { isServiceError } from "@/lib/utils"
 import { notFound } from "next/navigation"
-import { OrgRole } from "@sourcebot/db"
+import { OrgRole } from "@sherlock/db"
 interface ConnectionManagementPageProps {
     params: Promise<{
         domain: string

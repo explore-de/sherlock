@@ -1,4 +1,4 @@
-# @sourcebot/db
+# @sherlock/db
 
 This package contains the database schema (prisma/schema.prisma), migrations (prisma/migrations) and the client library for interacting with the database. Before making edits to the schema, please read about prisma's [migration model](https://www.prisma.io/docs/orm/prisma-migrate/understanding-prisma-migrate/mental-model) to get an idea of how migrations work.
 

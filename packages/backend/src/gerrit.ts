@@ -1,10 +1,10 @@
 import fetch from 'cross-fetch';
-import { GerritConfig } from "@sourcebot/schemas/v2/index.type"
+import { GerritConfig } from "@sherlock/schemas/v2/index.type"
 import { createLogger } from './logger.js';
 import micromatch from "micromatch";
 import { measure, fetchWithRetry } from './utils.js';
-import { BackendError } from '@sourcebot/error';
-import { BackendException } from '@sourcebot/error';
+import { BackendError } from '@sherlock/error';
+import { BackendException } from '@sherlock/error';
 import * as Sentry from "@sentry/node";
 
 // https://gerrit-review.googlesource.com/Documentation/rest-api.html

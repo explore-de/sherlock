@@ -23,7 +23,7 @@
                 "ggerganov/llama.cpp",
                 "codemirror/dev",
                 "tailwindlabs/tailwindcss",
-                "sourcebot-dev/sourcebot",
+                "example-org/example-repo",
                 "freeCodeCamp/freeCodeCamp",
                 "EbookFoundation/free-programming-books",
                 "sindresorhus/awesome",

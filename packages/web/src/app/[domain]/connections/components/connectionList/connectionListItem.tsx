@@ -1,7 +1,7 @@
 import { getDisplayTime } from "@/lib/utils";
 import { useMemo } from "react";
 import { ConnectionIcon } from "../connectionIcon";
-import { ConnectionSyncStatus, Prisma } from "@sourcebot/db";
+import { ConnectionSyncStatus, Prisma } from "@sherlock/db";
 import { StatusIcon } from "../statusIcon";
 import { ConnectionListItemErrorIndicator } from "./connectionListItemErrorIndicator";
 import { ConnectionListItemWarningIndicator } from "./connectionListItemWarningIndicator";

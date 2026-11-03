@@ -7,7 +7,7 @@ import { getConnections } from "@/actions";
 import { Skeleton } from "@/components/ui/skeleton";
 import { useQuery } from "@tanstack/react-query";
 import { env } from "@/env.mjs";
-import { RepoIndexingStatus, ConnectionSyncStatus } from "@sourcebot/db";
+import { RepoIndexingStatus, ConnectionSyncStatus } from "@sherlock/db";
 import { Search } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { useMemo, useState } from "react";

@@ -1,4 +1,4 @@
-import { OrgRole } from '@sourcebot/db';
+import { OrgRole } from '@sherlock/db';
 
 export const roleForNewMember = (existingMemberCount: number): OrgRole =>
     existingMemberCount === 0 ? OrgRole.OWNER : OrgRole.MEMBER;

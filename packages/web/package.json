@@ -1,5 +1,5 @@
 {
-  "name": "@sourcebot/web",
+  "name": "@sherlock/web",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -67,11 +67,11 @@
     "@replit/codemirror-lang-svelte": "^6.0.0",
     "@replit/codemirror-vim": "^6.4.0",
     "@sentry/nextjs": "^11.4.0",
+    "@sherlock/crypto": "workspace:*",
+    "@sherlock/db": "workspace:*",
+    "@sherlock/error": "workspace:*",
+    "@sherlock/schemas": "workspace:*",
     "@shopify/lang-jsonc": "^1.0.0",
-    "@sourcebot/crypto": "workspace:*",
-    "@sourcebot/db": "workspace:*",
-    "@sourcebot/error": "workspace:*",
-    "@sourcebot/schemas": "workspace:*",
     "@ssddanbrown/codemirror-lang-twig": "^1.0.0",
     "@t3-oss/env-nextjs": "^0.13.11",
     "@tanstack/react-query": "^5.104.5",

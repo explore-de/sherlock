@@ -29,7 +29,7 @@ telemetry leaves the machine you deploy it on.
   forks or archived repositories excluded.
 - **Search.** Regular expressions, symbol lookup and filters over repository,
   language and file path, answered by a vendored
-  [Zoekt](https://github.com/sourcebot-dev/zoekt).
+  [Zoekt](vendor/zoekt).
 - **Authentication.** Microsoft Entra ID, GitHub, Google, email codes, or email
   and password. Off by default; a single environment variable turns it on.
 - **Configuration as a file.** Connections can live in a JSON file under version
@@ -81,7 +81,7 @@ Other code hosts follow the same shape; see
 
 ## Authentication
 
-Set `SOURCEBOT_AUTH_ENABLED=true` and configure at least one provider. For
+Set `SHERLOCK_AUTH_ENABLED=true` and configure at least one provider. For
 Microsoft Entra ID:
 
 ```
@@ -144,7 +144,7 @@ The command above provides a local instance with persistent storage. To use a co
 
 The image starts a PostgreSQL and a Redis instance unless external services are configured, and keeps the index, the database and the cache under `/data` — mount a volume there, or an update discards the index and re-clones everything.
 
-Do not use upstream Sourcebot images for Sherlock. Fly templates require your own unique application name. Registry publishing is manual and targets the current GitHub repository.
+Fly templates require your own unique application name. Registry publishing is manual and targets the current GitHub repository.
 
 ## Security checks
 
@@ -170,9 +170,6 @@ optional telemetry, error reporting and mail integrations require the operator's
 own configuration. No upstream documentation analytics key is included. The
 subscription and billing code of the hosted upstream product has been removed.
 
-Internal `@sourcebot/*` package names, `SOURCEBOT_*` / `NEXT_PUBLIC_SOURCEBOT_*`
-environment variables, and `.sourcebot` storage paths are retained for
-compatibility. These are implementation identifiers, not product branding.
 Database migration history and vendored source are intentionally preserved.
 
 Documentation screenshots are inherited historical examples and may show upstream
@@ -181,9 +178,8 @@ review third-party license obligations and your deployment's policies.
 
 ## Provenance
 
-Sherlock is an independent project originating from Sourcebot v3.0.4, the
-last release before Enterprise licensing was introduced. The original MIT
-copyright and permission notice remain in [LICENSE](LICENSE). Third-party
+Sherlock is an independent project. The MIT copyright and permission notice
+remain in [LICENSE](LICENSE). Third-party
 components retain their own licenses, inventoried in
 [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md). Exact revisions are recorded
 in [FORK.md](FORK.md).

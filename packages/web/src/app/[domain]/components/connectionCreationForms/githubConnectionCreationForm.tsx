@@ -1,7 +1,7 @@
 'use client';
 
-import { GithubConnectionConfig } from "@sourcebot/schemas/v3/github.type";
-import { githubSchema } from "@sourcebot/schemas/v3/github.schema";
+import { GithubConnectionConfig } from "@sherlock/schemas/v3/github.type";
+import { githubSchema } from "@sherlock/schemas/v3/github.schema";
 import { githubQuickActions } from "../../connections/quickActions";
 import SharedConnectionCreationForm from "./sharedConnectionCreationForm";
 

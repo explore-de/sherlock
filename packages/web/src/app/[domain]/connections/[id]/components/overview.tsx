@@ -11,7 +11,7 @@ import { useQuery } from "@tanstack/react-query";
 import { flagConnectionForSync, getConnectionInfo } from "@/actions";
 import { isServiceError, unwrapServiceError } from "@/lib/utils";
 import { env } from "@/env.mjs";
-import { ConnectionSyncStatus } from "@sourcebot/db";
+import { ConnectionSyncStatus } from "@sherlock/db";
 import { FiLoader } from "react-icons/fi";
 import { CircleCheckIcon, AlertTriangle, CircleXIcon } from "lucide-react";
 import { Badge } from "@/components/ui/badge";

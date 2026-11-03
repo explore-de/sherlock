@@ -1,4 +1,4 @@
-import { PrismaClient } from "@sourcebot/db";
+import { PrismaClient } from "@sherlock/db";
 import { ArgumentParser } from "argparse";
 import { migrateDuplicateConnections } from "./scripts/migrate-duplicate-connections";
 import { confirmAction } from "./utils";

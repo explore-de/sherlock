@@ -40,7 +40,7 @@ export function PostHogProvider({ children, disabled }: PostHogProviderProps) {
 
     useEffect(() => {
         if (!disabled && env.NEXT_PUBLIC_POSTHOG_PAPIK) {
-            console.debug(`PostHog telemetry enabled. Cloud environment: ${env.NEXT_PUBLIC_SOURCEBOT_CLOUD_ENVIRONMENT}`);
+            console.debug(`PostHog telemetry enabled. Cloud environment: ${env.NEXT_PUBLIC_SHERLOCK_CLOUD_ENVIRONMENT}`);
             posthog.init(env.NEXT_PUBLIC_POSTHOG_PAPIK, {
                 // @see next.config.mjs for path rewrites to the "/ingest" route.
                 api_host: "/ingest",
@@ -50,7 +50,7 @@ export function PostHogProvider({ children, disabled }: PostHogProviderProps) {
                 // In self-hosted mode, we don't want to capture the following
                 // default properties.
                 // @see: https://posthog.com/docs/data/events#default-properties
-                property_denylist: env.NEXT_PUBLIC_SOURCEBOT_CLOUD_ENVIRONMENT === undefined ? [
+                property_denylist: env.NEXT_PUBLIC_SHERLOCK_CLOUD_ENVIRONMENT === undefined ? [
                     '$current_url',
                     '$pathname',
                     '$session_entry_url',
@@ -74,7 +74,7 @@ export function PostHogProvider({ children, disabled }: PostHogProviderProps) {
         }
 
         // Only identify the user if we are running in a cloud environment.
-        if (env.NEXT_PUBLIC_SOURCEBOT_CLOUD_ENVIRONMENT !== undefined) {
+        if (env.NEXT_PUBLIC_SHERLOCK_CLOUD_ENVIRONMENT !== undefined) {
             posthog.identify(session.user.id, {
                 email: session.user.email,
                 name: session.user.name,

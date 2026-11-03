@@ -20,7 +20,7 @@ export default async function ReposPage(props: { params: Promise<{ domain: strin
             <div className="flex flex-col items-center">
                 <div className="w-full">
                     <RepositoryTable
-                        isAddNewRepoButtonVisible={env.SOURCEBOT_AUTH_ENABLED === 'true'}
+                        isAddNewRepoButtonVisible={env.SHERLOCK_AUTH_ENABLED === 'true'}
                     />
                 </div>
             </div>

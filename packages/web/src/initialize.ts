@@ -1,21 +1,21 @@
-import { ConnectionSyncStatus, OrgRole, Prisma, RepoIndexingStatus } from '@sourcebot/db';
+import { ConnectionSyncStatus, OrgRole, Prisma, RepoIndexingStatus } from '@sherlock/db';
 import { env } from './env.mjs';
 import { prisma } from "@/prisma";
 import { SINGLE_TENANT_USER_ID, SINGLE_TENANT_ORG_ID, SINGLE_TENANT_ORG_DOMAIN, SINGLE_TENANT_ORG_NAME, SINGLE_TENANT_USER_EMAIL } from './lib/constants';
 import { readFile } from 'fs/promises';
 import { watch } from 'fs';
 import stripJsonComments from 'strip-json-comments';
-import { SherlockConfig } from "@sourcebot/schemas/v3/index.type";
-import { ConnectionConfig } from '@sourcebot/schemas/v3/connection.type';
-import { indexSchema } from '@sourcebot/schemas/v3/index.schema';
+import { SherlockConfig } from "@sherlock/schemas/v3/index.type";
+import { ConnectionConfig } from '@sherlock/schemas/v3/connection.type';
+import { indexSchema } from '@sherlock/schemas/v3/index.schema';
 import Ajv from 'ajv';
 
 const ajv = new Ajv({
     validateFormats: false,
 });
 
-if (env.SOURCEBOT_AUTH_ENABLED === 'false' && env.SOURCEBOT_TENANCY_MODE === 'multi') {
-    throw new Error('SOURCEBOT_AUTH_ENABLED must be true when SOURCEBOT_TENANCY_MODE is multi');
+if (env.SHERLOCK_AUTH_ENABLED === 'false' && env.SHERLOCK_TENANCY_MODE === 'multi') {
+    throw new Error('SHERLOCK_AUTH_ENABLED must be true when SHERLOCK_TENANCY_MODE is multi');
 }
 
 const isRemotePath = (path: string) => {
@@ -140,11 +140,11 @@ const initSingleTenancy = async () => {
             name: SINGLE_TENANT_ORG_NAME,
             domain: SINGLE_TENANT_ORG_DOMAIN,
             id: SINGLE_TENANT_ORG_ID,
-            isOnboarded: env.SOURCEBOT_AUTH_ENABLED === 'false',
+            isOnboarded: env.SHERLOCK_AUTH_ENABLED === 'false',
         }
     });
 
-    if (env.SOURCEBOT_AUTH_ENABLED === 'false') {
+    if (env.SHERLOCK_AUTH_ENABLED === 'false') {
         // Default user for single tenancy unauthed access
         await prisma.user.upsert({
             where: {
@@ -207,7 +207,7 @@ const initSingleTenancy = async () => {
 }
 
 (async () => {
-    if (env.SOURCEBOT_TENANCY_MODE === 'single') {
+    if (env.SHERLOCK_TENANCY_MODE === 'single') {
         await initSingleTenancy();
     }
 })();
