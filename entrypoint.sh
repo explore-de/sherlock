@@ -1,11 +1,6 @@
 #!/bin/sh
 set -e
 
-. "$(dirname "$0")/legacy-compat.sh"
-adopt_legacy_env
-adopt_legacy_database_url
-migrate_legacy_data_dir
-
 export SHERLOCK_LOG_LEVEL="${SHERLOCK_LOG_LEVEL:-info}"
 
 if [ "$DATABASE_URL" = "postgresql://postgres@localhost:5432/sherlock" ]; then
@@ -66,7 +61,6 @@ if [ -z "$SHERLOCK_ENCRYPTION_KEY" ]; then
     set -a
     . "$DATA_CACHE_DIR/.secret"
     set +a
-    adopt_legacy_env
 fi
 
 # @see : https://authjs.dev/getting-started/deployment#auth_secret
@@ -150,12 +144,8 @@ if [ "$DATABASE_EMBEDDED" = "true" ]; then
 
     # Check if the database already exists, and create it if it dne
     EXISTING_DB=$(psql -U postgres -tAc "SELECT 1 FROM pg_database WHERE datname = 'sherlock'")
-    LEGACY_DB=$(psql -U postgres -tAc "SELECT 1 FROM pg_database WHERE datname = 'sourcebot'")
 
-    if [ "$EXISTING_DB" != "1" ] && [ "$LEGACY_DB" = "1" ]; then
-        echo -e "\e[34m[Info] Renaming legacy database 'sourcebot' to 'sherlock'...\e[0m"
-        psql -U postgres -c "ALTER DATABASE \"sourcebot\" RENAME TO \"sherlock\""
-    elif [ "$EXISTING_DB" = "1" ]; then
+    if [ "$EXISTING_DB" = "1" ]; then
         echo "Database 'sherlock' already exists; skipping creation."
     else
         echo "Creating database 'sherlock'..."

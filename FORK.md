@@ -21,7 +21,7 @@ Before publishing a product, adapt branding and upstream deployment references, 
 
 ## Sherlock identity
 
-Names, logos, packages, environment variables and storage paths are Sherlock. Sourcebot attribution is kept only here, in LICENSE and in THIRD_PARTY_NOTICES.md. Existing deployments are migrated by `legacy-compat.sh` and `entrypoint.sh`, which accept the old `SOURCEBOT_*` variables with a deprecation warning, move the `.sourcebot` data directory and rename the `sourcebot` database. Applied database migrations and third-party source are not rebranded. Upstream hosted services, update checks, and automated deployment workflows were removed; configure your own integrations.
+Names, logos, packages, environment variables and storage paths are Sherlock. Sourcebot attribution is kept only here, in LICENSE and in THIRD_PARTY_NOTICES.md. Applied database migrations and third-party source are not rebranded. Upstream hosted services, update checks, and automated deployment workflows were removed; configure your own integrations.
 
 ## Dependency updates
 

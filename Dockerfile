@@ -224,7 +224,7 @@ RUN mkdir -p /run/postgresql && \
 COPY supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 COPY prefix-output.sh ./prefix-output.sh
 RUN chmod +x ./prefix-output.sh
-COPY entrypoint.sh legacy-compat.sh ./
+COPY entrypoint.sh ./entrypoint.sh
 RUN chmod +x ./entrypoint.sh
 
 COPY default-config.json .
