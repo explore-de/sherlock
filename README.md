@@ -46,10 +46,9 @@ telemetry leaves the machine you deploy it on.
 
 If you already manage PostgreSQL and Redis, configure their URLs and run `yarn dev:zoekt:build`, `yarn dev:prisma:migrate:dev`, then run `yarn dev:zoekt`, `yarn dev:backend`, and `yarn dev:web` in separate terminals. Do not run `yarn dev`, which starts the bundled development containers.
 
-Run `yarn test` for all unit tests and `yarn build` for a production build. See [AI search setup](docs/self-hosting/ai-search.md) to enable optional natural-language search.
+Run `yarn test` for all unit tests and `yarn build` for a production build.
 
-See [CONTRIBUTING.md](CONTRIBUTING.md) and the
-[configuration documentation](docs/self-hosting/configuration.mdx).
+See [CONTRIBUTING.md](CONTRIBUTING.md).
 
 ## Connect a code host
 
@@ -76,9 +75,6 @@ searchable for every signed-in user — Sherlock does not mirror per-user
 permissions from the code host. Use a dedicated service account with exactly the
 read access you intend to expose, never a personal token.
 
-Other code hosts follow the same shape; see
-[declarative config](docs/self-hosting/more/declarative-config.mdx).
-
 ## Authentication
 
 Set `SHERLOCK_AUTH_ENABLED=true` and configure at least one provider. For
@@ -101,8 +97,6 @@ provider your access boundary — restrict who may sign in there. Email and
 password accounts are the exception: that sign-up verifies no identity, so such
 an account gains no access on its own and must be invited. Set
 `AUTH_CREDENTIALS_LOGIN_ENABLED=false` to turn it off entirely.
-
-Details in [authentication](docs/self-hosting/more/authentication.mdx).
 
 ## Use it from an AI assistant (MCP)
 
