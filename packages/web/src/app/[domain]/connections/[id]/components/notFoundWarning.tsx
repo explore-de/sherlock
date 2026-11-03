@@ -34,7 +34,7 @@ export const NotFoundWarning = ({ syncStatus, syncStatusMetadata, onSecretsClick
     return (
         <div className="flex flex-col items-start gap-4 border border-yellow-200 dark:border-yellow-800 bg-yellow-50 dark:bg-yellow-900/20 px-5 py-5 text-yellow-700 dark:text-yellow-400 rounded-lg">
             <div className="flex items-center gap-2">
-                <AlertTriangle className="h-5 w-5 flex-shrink-0" />
+                <AlertTriangle className="h-5 w-5 shrink-0" />
                 <h3 className="font-semibold">Unable to fetch all references</h3>
             </div>
             <p className="text-sm text-yellow-600/90 dark:text-yellow-300/90 leading-relaxed">

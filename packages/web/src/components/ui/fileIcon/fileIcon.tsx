@@ -13,11 +13,11 @@ export const FileIcon = ({ language }: FileIconProps) => {
 
    if (iconifyName) {
       return (
-         <Icon icon={iconifyName} className="w-4 h-4 flex-shrink-0" />
+         <Icon icon={iconifyName} className="w-4 h-4 shrink-0" />
       )
    } else {
       return (
-         <QuestionMarkCircledIcon className="w-4 h-4 flex-shrink-0" />
+         <QuestionMarkCircledIcon className="w-4 h-4 shrink-0" />
       )
    }
 };

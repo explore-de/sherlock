@@ -295,15 +295,15 @@ export const SearchBar = ({
             )}
             {isAiSearchModeEnabled ? (
                 <>
-                    <div className="h-6 w-[2px] shrink-0 animate-pulse rounded-full bg-gradient-to-b from-foreground to-foreground/10" />
+                    <div className="h-6 w-[2px] shrink-0 animate-pulse rounded-full bg-linear-to-b from-foreground to-foreground/10" />
                     <Badge
                         variant="outline"
-                        className="shrink-0 animate-shimmer border-foreground/20 bg-gradient-to-r from-background via-foreground/10 to-background bg-[length:200%_100%] px-1.5 py-0 text-[10px] font-semibold uppercase tracking-wide text-foreground"
+                        className="shrink-0 animate-shimmer border-foreground/20 bg-linear-to-r from-background via-foreground/10 to-background bg-size-[200%_100%] px-1.5 py-0 text-[10px] font-semibold uppercase tracking-wide text-foreground"
                     >
                         AI
                     </Badge>
                     <input
-                        className="w-full bg-transparent outline-none text-sm placeholder:text-muted-foreground"
+                        className="w-full bg-transparent outline-hidden text-sm placeholder:text-muted-foreground"
                         placeholder="Describe what you're looking for..."
                         value={aiQuery}
                         onChange={(e) => setAiQuery(e.target.value)}
@@ -421,11 +421,11 @@ const AiQueryPreviewBox = ({
                     type="button"
                     onClick={() => onSelect(preview)}
                     className={cn(
-                        "group flex w-full cursor-pointer flex-row items-baseline gap-2 rounded-sm px-2 py-1.5 text-left text-sm outline-none",
+                        "group flex w-full cursor-pointer flex-row items-baseline gap-2 rounded-sm px-2 py-1.5 text-left text-sm outline-hidden",
                         "transition-all duration-300 ease-out",
-                        "hover:bg-foreground/[0.06] hover:shadow-[0_1px_8px_rgba(0,0,0,0.06)] dark:hover:shadow-[0_1px_8px_rgba(255,255,255,0.06)]",
-                        "focus-visible:bg-foreground/[0.06] focus-visible:ring-1 focus-visible:ring-foreground/20",
-                        "active:scale-[0.99] active:bg-foreground/[0.09]",
+                        "hover:bg-foreground/6 hover:shadow-[0_1px_8px_rgba(0,0,0,0.06)] dark:hover:shadow-[0_1px_8px_rgba(255,255,255,0.06)]",
+                        "focus-visible:bg-foreground/6 focus-visible:ring-1 focus-visible:ring-foreground/20",
+                        "active:scale-[0.99] active:bg-foreground/9",
                     )}
                 >
                     <span className="shrink-0 text-muted-foreground">
@@ -442,7 +442,7 @@ const AiQueryPreviewBox = ({
             ) : (
                 <div className="flex w-full flex-row items-center rounded-sm px-2 py-1.5 text-sm">
                     <span
-                        className="animate-shimmer bg-[length:200%_100%] bg-clip-text text-transparent [background-image:linear-gradient(110deg,theme(colors.muted.foreground)_40%,theme(colors.foreground)_50%,theme(colors.muted.foreground)_60%)]"
+                        className="animate-shimmer bg-size-[200%_100%] bg-clip-text text-transparent bg-[linear-gradient(110deg,var(--color-muted-foreground)_40%,var(--color-foreground)_50%,var(--color-muted-foreground)_60%)]"
                     >
                         Working out what to search for&hellip;
                     </span>

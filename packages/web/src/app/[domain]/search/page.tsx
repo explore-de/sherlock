@@ -310,7 +310,7 @@ const PanelGroup = ({
                 />
             </ResizablePanel>
             <ResizableHandle
-                className="w-[1px] bg-accent transition-colors delay-50 data-[resize-handle-state=drag]:bg-accent-foreground data-[resize-handle-state=hover]:bg-accent-foreground"
+                className="w-px bg-accent transition-colors delay-50 data-[resize-handle-state=drag]:bg-accent-foreground data-[resize-handle-state=hover]:bg-accent-foreground"
             />
 
             {/* ~~ Search results ~~ */}
@@ -358,7 +358,7 @@ const PanelGroup = ({
                 )}
             </ResizablePanel>
             <ResizableHandle
-                className="mt-7 w-[1px] bg-accent transition-colors delay-50 data-[resize-handle-state=drag]:bg-accent-foreground data-[resize-handle-state=hover]:bg-accent-foreground"
+                className="mt-7 w-px bg-accent transition-colors delay-50 data-[resize-handle-state=drag]:bg-accent-foreground data-[resize-handle-state=hover]:bg-accent-foreground"
             />
 
             {/* ~~ Code preview ~~ */}

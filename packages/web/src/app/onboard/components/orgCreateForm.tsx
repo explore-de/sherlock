@@ -99,7 +99,7 @@ export function OrgCreateForm({ rootDomain }: OrgCreateFormProps) {
                                 <FormDescription>{`Your organization's URL namespace. This is where your organization's Sherlock instance will be accessible.`}</FormDescription>
                                 <FormControl>
                                     <div className="flex items-center w-full">
-                                        <div className="flex-shrink-0 text-sm text-muted-foreground bg-backgroundSecondary rounded-md rounded-r-none border border-r-0 px-3 py-[9px]">{rootDomain}/</div>
+                                        <div className="shrink-0 text-sm text-muted-foreground bg-backgroundSecondary rounded-md rounded-r-none border border-r-0 px-3 py-[9px]">{rootDomain}/</div>
                                         <Input
                                             placeholder="aperture-labs"
                                             {...field}

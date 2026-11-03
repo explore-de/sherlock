@@ -34,10 +34,10 @@ export const FilterPanel = ({
                     <Image
                         src={info.icon}
                         alt={info.codeHostName}
-                        className={cn('w-4 h-4 flex-shrink-0', info.iconClassName)}
+                        className={cn('w-4 h-4 shrink-0', info.iconClassName)}
                     />
                 ) : (
-                    <LaptopIcon className="w-4 h-4 flex-shrink-0" />
+                    <LaptopIcon className="w-4 h-4 shrink-0" />
                 );
 
                 return {

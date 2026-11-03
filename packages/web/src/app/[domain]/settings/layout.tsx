@@ -46,7 +46,7 @@ export default async function SettingsLayout(
     return (
         <div className="min-h-screen flex flex-col bg-backgroundSecondary">
             <NavigationMenu domain={domain} />
-            <div className="flex-grow flex justify-center p-4 relative">
+            <div className="grow flex justify-center p-4 relative">
                 <div className="w-full max-w-6xl p-6">
                     <Header className="w-full">
                         <h1 className="text-3xl">Settings</h1>

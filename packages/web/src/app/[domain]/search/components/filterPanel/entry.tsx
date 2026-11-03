@@ -42,7 +42,7 @@ export const Entry = ({
         >
             <div className="flex flex-row items-center gap-1 overflow-hidden">
                 {Icon ? Icon : (
-                    <QuestionMarkCircledIcon className="w-4 h-4 flex-shrink-0" />
+                    <QuestionMarkCircledIcon className="w-4 h-4 shrink-0" />
                 )}
                 <p className="overflow-hidden text-ellipsis whitespace-nowrap">{displayName}</p>
             </div>

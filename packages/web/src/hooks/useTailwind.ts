@@ -1,13 +1,13 @@
 'use client';
 
-import { useMemo } from "react";
-import resolveConfig from 'tailwindcss/resolveConfig';
-import tailwindConfig from '../../tailwind.config';
+const tailwind = {
+    theme: {
+        colors: {
+            background: 'hsl(var(--background))',
+            foreground: 'hsl(var(--foreground))',
+            highlight: 'hsl(var(--highlight))',
+        },
+    },
+};
 
-export const useTailwind = () => {
-    const tailwind = useMemo(() => {
-        return resolveConfig(tailwindConfig);
-    }, []);
-
-    return tailwind;
-}
+export const useTailwind = () => tailwind;

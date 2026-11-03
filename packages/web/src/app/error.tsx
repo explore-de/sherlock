@@ -129,7 +129,7 @@ function ErrorField({ label, value, onCopy, copied }: ErrorFieldProps) {
         <div className="space-y-2">
             <div className="text-sm font-medium">{label}</div>
             <div className="flex items-center gap-2">
-                <div className="bg-muted p-2 rounded text-sm flex-1 break-words">{value}</div>
+                <div className="bg-muted p-2 rounded text-sm flex-1 wrap-break-word">{value}</div>
                 <Button
                     variant="outline"
                     size="icon"

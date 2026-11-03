@@ -104,7 +104,7 @@ function VerifyPageContent() {
 
 function LoadingVerifyPage() {
     return (
-        <div className="min-h-screen flex flex-col items-center justify-center p-4 bg-gradient-to-b from-background to-muted/30">
+        <div className="min-h-screen flex flex-col items-center justify-center p-4 bg-linear-to-b from-background to-muted/30">
             <div className="w-full max-w-md">
                 <div className="flex justify-center mb-6">
                     <SherlockLogo className="h-16" size="large" />
