@@ -4938,7 +4938,7 @@ __metadata:
     react-hook-form: "npm:^7.90.0"
     react-hotkeys-hook: "npm:^5.3.3"
     react-icons: "npm:^5.7.0"
-    react-resizable-panels: "npm:^2.1.1"
+    react-resizable-panels: "npm:^4.14.2"
     server-only: "npm:^0.0.1"
     sharp: "npm:^0.35.5"
     strip-json-comments: "npm:^5.0.3"
@@ -12309,13 +12309,13 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react-resizable-panels@npm:^2.1.1":
-  version: 2.1.7
-  resolution: "react-resizable-panels@npm:2.1.7"
+"react-resizable-panels@npm:^4.14.2":
+  version: 4.14.2
+  resolution: "react-resizable-panels@npm:4.14.2"
   peerDependencies:
-    react: ^16.14.0 || ^17.0.0 || ^18.0.0 || ^19.0.0 || ^19.0.0-rc
-    react-dom: ^16.14.0 || ^17.0.0 || ^18.0.0 || ^19.0.0 || ^19.0.0-rc
-  checksum: 10c0/644a57960507b809f571bf8c95f07a04e3aeb9b20405a1d9d8cb6deb72d2462192e6e5e9751237347e7818179a619a6f65de4b355e276334d10b8cfe737ca4e1
+    react: ^18.0.0 || ^19.0.0
+    react-dom: ^18.0.0 || ^19.0.0
+  checksum: 10c0/545447d18f24746343bc7f41b15ed837d17a558abb593797068f9f6f233303edbd36e0b170fccf1ac14faa9953eeaad9d53b928ae1ed850ba4de5e2b89f70a1a
   languageName: node
   linkType: hard
 
