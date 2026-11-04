@@ -1367,14 +1367,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@iconify/react@npm:^5.1.0":
-  version: 5.2.0
-  resolution: "@iconify/react@npm:5.2.0"
+"@iconify/react@npm:^6.0.2":
+  version: 6.0.2
+  resolution: "@iconify/react@npm:6.0.2"
   dependencies:
     "@iconify/types": "npm:^2.0.0"
   peerDependencies:
     react: ">=16"
-  checksum: 10c0/e63102e6408506058fc8a6a37681a8037bc9796c35ea9d334a8d741d5c0d89e72ce75f5bb6181c42c507d0252018ba5b8a118de87651efe1cc890899dc9f48bd
+  checksum: 10c0/1f53f588361d658c6f077fefcc31d52f6f5d375f06b63dd13cc73b71fd28cf9409edece921ea8fa5195a79d02ff9162aff8472c14e858c0178067eecc3128460
   languageName: node
   linkType: hard
 
@@ -4842,7 +4842,7 @@ __metadata:
     "@eslint/js": "npm:^9.39.5"
     "@floating-ui/react": "npm:^0.27.20"
     "@hookform/resolvers": "npm:^3.9.0"
-    "@iconify/react": "npm:^5.1.0"
+    "@iconify/react": "npm:^6.0.2"
     "@iizukak/codemirror-lang-wgsl": "npm:^0.3.0"
     "@modelcontextprotocol/sdk": "npm:^1.32.2"
     "@radix-ui/react-alert-dialog": "npm:^1.2.1"
