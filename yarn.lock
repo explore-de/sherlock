@@ -4740,7 +4740,7 @@ __metadata:
     bullmq: "npm:^6.5.3"
     cross-env: "npm:^10.1.0"
     cross-fetch: "npm:^4.0.0"
-    dotenv: "npm:^16.4.5"
+    dotenv: "npm:^18.0.5"
     express: "npm:^4.21.2"
     gitea-js: "npm:^1.22.0"
     glob: "npm:^14.0.3"
@@ -4766,7 +4766,7 @@ __metadata:
   resolution: "@sherlock/crypto@workspace:packages/crypto"
   dependencies:
     "@types/node": "npm:^22.7.5"
-    dotenv: "npm:^16.4.5"
+    dotenv: "npm:^18.0.5"
     typescript: "npm:^5.7.3"
   languageName: unknown
   linkType: soft
@@ -7772,7 +7772,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"dotenv@npm:^16.3.0, dotenv@npm:^16.4.5":
+"dotenv@npm:^16.3.0":
   version: 16.4.7
   resolution: "dotenv@npm:16.4.7"
   checksum: 10c0/be9f597e36a8daf834452daa1f4cc30e5375a5968f98f46d89b16b983c567398a330580c88395069a77473943c06b877d1ca25b4afafcdd6d4adb549e8293462
@@ -7783,6 +7783,15 @@ __metadata:
   version: 17.4.2
   resolution: "dotenv@npm:17.4.2"
   checksum: 10c0/164f8e77a646c8446867d5b588d26ea6005c8ea7c5eb41cf926f6113d23f2191355f6e0cfd95ea9bab98394a5b0a3f1e51a8399711b666fe55cc7b0bd745f942
+  languageName: node
+  linkType: hard
+
+"dotenv@npm:^18.0.5":
+  version: 18.0.5
+  resolution: "dotenv@npm:18.0.5"
+  bin:
+    dotenv: dist/index.cjs
+  checksum: 10c0/fade137f063f3d3483459b71c6ed0f98f18189fa52b14c9f192e57df6b76719340aa6d9a1d194e4fa0e025deb5af9d545efcc3a28f09230af815518f0b9c0785
   languageName: node
   linkType: hard
 

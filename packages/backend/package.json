@@ -39,7 +39,7 @@
         "argparse": "^2.0.1",
         "bullmq": "^6.5.3",
         "cross-fetch": "^4.0.0",
-        "dotenv": "^16.4.5",
+        "dotenv": "^18.0.5",
         "express": "^4.21.2",
         "gitea-js": "^1.22.0",
         "glob": "^14.0.3",
