@@ -4895,7 +4895,7 @@ __metadata:
     clsx: "npm:^2.1.1"
     cm6-graphql: "npm:^0.2.2"
     cmdk: "npm:^1.1.1"
-    codemirror: "npm:^5.65.3"
+    codemirror: "npm:^6.0.2"
     codemirror-json-schema: "npm:^0.8.0"
     codemirror-lang-brainfuck: "npm:^0.1.0"
     codemirror-lang-elixir: "npm:^4.0.1"
@@ -7150,10 +7150,18 @@ __metadata:
   languageName: node
   linkType: hard
 
-"codemirror@npm:^5.65.3":
-  version: 5.65.19
-  resolution: "codemirror@npm:5.65.19"
-  checksum: 10c0/067024d74a9a98721063bcd78373899e827914c92881c595a2d6789649a3c4e061edd892b29bca10995a5450488c9c93fc3998a3c4ed6fd19cba2e97cd23d4e1
+"codemirror@npm:^6.0.2":
+  version: 6.0.2
+  resolution: "codemirror@npm:6.0.2"
+  dependencies:
+    "@codemirror/autocomplete": "npm:^6.0.0"
+    "@codemirror/commands": "npm:^6.0.0"
+    "@codemirror/language": "npm:^6.0.0"
+    "@codemirror/lint": "npm:^6.0.0"
+    "@codemirror/search": "npm:^6.0.0"
+    "@codemirror/state": "npm:^6.0.0"
+    "@codemirror/view": "npm:^6.0.0"
+  checksum: 10c0/8d198d8aebc32e56c966ac57b0fe8f832b7d601a2f62819ba3a294570233982bf4d5b499a764194b6b26dbc5313a156c2611cbc542234ea6eae6accf07a651ab
   languageName: node
   linkType: hard
 
