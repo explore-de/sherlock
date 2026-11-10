@@ -86,8 +86,8 @@ export const CreateApiKeyCard = () => {
                             recovered — if you lose it, revoke the key and create a new one.
                         </DialogDescription>
                     </DialogHeader>
-                    <div className="flex flex-row items-center gap-2">
-                        <code className="flex-1 truncate rounded-md bg-muted px-3 py-2 font-mono text-sm">
+                    <div className="flex min-w-0 flex-row items-center gap-2">
+                        <code className="min-w-0 flex-1 break-all rounded-md bg-muted px-3 py-2 font-mono text-sm">
                             {createdKey}
                         </code>
                         <Button variant="outline" size="icon" onClick={onCopy} aria-label="Copy key">
