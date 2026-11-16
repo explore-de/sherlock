@@ -18,11 +18,11 @@ ARG NEXT_PUBLIC_SHERLOCK_CLOUD_ENVIRONMENT
 ARG NEXT_PUBLIC_SENTRY_WEBAPP_DSN
 ARG NEXT_PUBLIC_SENTRY_BACKEND_DSN
 
-FROM node:26.13.0-alpine3.24 AS node-alpine
+FROM node:26.13.1-alpine3.24 AS node-alpine
 # Node 26+ images no longer ship yarn. Install the same classic yarn the Node 24 image has;
 # it only hands over to .yarn/releases (yarnPath), so nothing is downloaded at runtime.
 RUN command -v yarn >/dev/null || npm install -g yarn@1.22.22
-FROM golang:1.27.3-alpine3.24 AS go-alpine
+FROM golang:1.27.4-alpine3.24 AS go-alpine
 # ----------------------------------
 
 # ------ Build Zoekt ------
