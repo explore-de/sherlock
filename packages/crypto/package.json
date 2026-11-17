@@ -8,7 +8,7 @@
     "postinstall": "yarn build"
   },
   "dependencies": {
-    "dotenv": "^16.4.5"
+    "dotenv": "^18.0.5"
   },
   "devDependencies": {
     "@types/node": "^22.7.5",
