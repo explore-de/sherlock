@@ -41,7 +41,7 @@
     "@codemirror/view": "^6.43.15",
     "@floating-ui/react": "^0.27.20",
     "@hookform/resolvers": "^3.9.0",
-    "@iconify/react": "^5.1.0",
+    "@iconify/react": "^6.0.2",
     "@iizukak/codemirror-lang-wgsl": "^0.3.0",
     "@modelcontextprotocol/sdk": "^1.32.2",
     "@radix-ui/react-alert-dialog": "^1.2.1",
