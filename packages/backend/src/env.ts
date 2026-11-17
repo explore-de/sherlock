@@ -12,11 +12,13 @@ const numberSchema = z.coerce.number();
 
 dotenv.config({
 	path: './.env',
+	quiet: true,
 });
 
 dotenv.config({
 	path: './.env.local',
-	override: true
+	override: true,
+	quiet: true,
 });
 
 export const env = createEnv({

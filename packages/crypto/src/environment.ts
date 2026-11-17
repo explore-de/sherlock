@@ -6,7 +6,8 @@ export const getEnv = (env: string | undefined, defaultValue?: string) => {
 
 dotenv.config({
     path: './.env.local',
-    override: true
+    override: true,
+    quiet: true,
 });
 
 // @note: You can use https://generate-random.org/encryption-key-generator to create a new 32 byte key
