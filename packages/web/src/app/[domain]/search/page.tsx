@@ -17,7 +17,7 @@ import { InfoCircledIcon, SymbolIcon } from "@radix-ui/react-icons";
 import { useQuery } from "@tanstack/react-query";
 import { useRouter } from "next/navigation";
 import { Suspense, useCallback, useEffect, useMemo, useRef, useState } from "react";
-import { ImperativePanelHandle } from "react-resizable-panels";
+import { PanelImperativeHandle } from "react-resizable-panels";
 import { getRepos } from "../../api/(client)/client";
 import { ArrowRight, Sparkles } from "lucide-react";
 import { ServiceErrorException } from "@/lib/serviceError";
@@ -276,7 +276,7 @@ const PanelGroup = ({
     const [selectedFile, setSelectedFile] = useState<SearchResultFile | undefined>(undefined);
     const [filteredFileMatches, setFilteredFileMatches] = useState<SearchResultFile[]>(fileMatches);
 
-    const codePreviewPanelRef = useRef<ImperativePanelHandle>(null);
+    const codePreviewPanelRef = useRef<PanelImperativeHandle>(null);
     useEffect(() => {
         if (selectedFile) {
             codePreviewPanelRef.current?.expand();
@@ -291,17 +291,16 @@ const PanelGroup = ({
 
     return (
         <ResizablePanelGroup
-            direction="horizontal"
+            orientation="horizontal"
             className="h-full"
         >
             {/* ~~ Filter panel ~~ */}
             <ResizablePanel
-                minSize={20}
-                maxSize={30}
-                defaultSize={20}
+                minSize="20%"
+                maxSize="30%"
+                defaultSize="20%"
                 collapsible={true}
                 id={'filter-panel'}
-                order={1}
             >
                 <FilterPanel
                     matches={fileMatches}
@@ -310,16 +309,17 @@ const PanelGroup = ({
                 />
             </ResizablePanel>
             <ResizableHandle
-                className="w-px bg-accent transition-colors delay-50 data-[resize-handle-state=drag]:bg-accent-foreground data-[resize-handle-state=hover]:bg-accent-foreground"
+                className="w-px bg-accent transition-colors delay-50 data-[separator=active]:bg-accent-foreground data-[separator=hover]:bg-accent-foreground"
             />
 
             {/* ~~ Search results ~~ */}
             <ResizablePanel
-                minSize={10}
+                minSize="10%"
                 id={'search-results-panel'}
-                order={2}
+                className="flex h-full flex-col"
+                style={{ overflow: 'hidden' }}
             >
-                <div className="py-1 px-2 flex flex-row items-center">
+                <div className="py-1 px-2 flex shrink-0 flex-row items-center">
                     <InfoCircledIcon className="w-4 h-4 mr-2" />
                     {
                         fileMatches.length > 0 ? (
@@ -337,37 +337,38 @@ const PanelGroup = ({
                         </div>
                     )}
                 </div>
-                {filteredFileMatches.length > 0 ? (
-                    <SearchResultsPanel
-                        fileMatches={filteredFileMatches}
-                        onOpenFileMatch={(fileMatch) => {
-                            setSelectedFile(fileMatch);
-                        }}
-                        onMatchIndexChanged={(matchIndex) => {
-                            setSelectedMatchIndex(matchIndex);
-                        }}
-                        isLoadMoreButtonVisible={!!isMoreResultsButtonVisible}
-                        onLoadMoreButtonClicked={onLoadMoreResults}
-                        isBranchFilteringEnabled={isBranchFilteringEnabled}
-                        repoMetadata={repoMetadata}
-                    />
-                ) : (
-                    <div className="flex flex-col items-center justify-center h-full">
-                        <p className="text-sm text-muted-foreground">No results found</p>
-                    </div>
-                )}
+                <div className="min-h-0 flex-1">
+                    {filteredFileMatches.length > 0 ? (
+                        <SearchResultsPanel
+                            fileMatches={filteredFileMatches}
+                            onOpenFileMatch={(fileMatch) => {
+                                setSelectedFile(fileMatch);
+                            }}
+                            onMatchIndexChanged={(matchIndex) => {
+                                setSelectedMatchIndex(matchIndex);
+                            }}
+                            isLoadMoreButtonVisible={!!isMoreResultsButtonVisible}
+                            onLoadMoreButtonClicked={onLoadMoreResults}
+                            isBranchFilteringEnabled={isBranchFilteringEnabled}
+                            repoMetadata={repoMetadata}
+                        />
+                    ) : (
+                        <div className="flex flex-col items-center justify-center h-full">
+                            <p className="text-sm text-muted-foreground">No results found</p>
+                        </div>
+                    )}
+                </div>
             </ResizablePanel>
             <ResizableHandle
-                className="mt-7 w-px bg-accent transition-colors delay-50 data-[resize-handle-state=drag]:bg-accent-foreground data-[resize-handle-state=hover]:bg-accent-foreground"
+                className="mt-7 w-px bg-accent transition-colors delay-50 data-[separator=active]:bg-accent-foreground data-[separator=hover]:bg-accent-foreground"
             />
 
             {/* ~~ Code preview ~~ */}
             <ResizablePanel
-                ref={codePreviewPanelRef}
-                minSize={10}
+                panelRef={codePreviewPanelRef}
+                minSize="10%"
                 collapsible={true}
                 id={'code-preview-panel'}
-                order={3}
             >
                 <CodePreviewPanel
                     fileMatch={selectedFile}
