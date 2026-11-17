@@ -1,5 +1,8 @@
 import { simpleGit, SimpleGitProgressEvent } from 'simple-git';
 
+const describeError = (error: unknown) =>
+    (error instanceof Error ? error.message : String(error)).replace(/\/\/[^@/\s]+@/g, '//***@');
+
 export const cloneRepository = async (cloneURL: string, path: string, onProgress?: (event: SimpleGitProgressEvent) => void) => {
     const git = simpleGit({
         progress: onProgress,
@@ -17,7 +20,7 @@ export const cloneRepository = async (cloneURL: string, path: string, onProgress
             path,
         }).addConfig("remote.origin.fetch", "+refs/heads/*:refs/heads/*");
     } catch (error) {
-        throw new Error(`Failed to clone repository`);
+        throw new Error(`Failed to clone repository: ${describeError(error)}`);
     }
 }
 
@@ -38,7 +41,7 @@ export const fetchRepository = async (path: string, onProgress?: (event: SimpleG
             ]
         );
     } catch (error) {
-        throw new Error(`Failed to fetch repository ${path}`);
+        throw new Error(`Failed to fetch repository ${path}: ${describeError(error)}`);
     }
 }
 
