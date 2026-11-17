@@ -2,6 +2,7 @@ import type { Prisma } from '@sherlock/db';
 import { RepoIndexingStatus } from '@sherlock/db';
 
 const RETRY_DELAYS_MS = [30_000, 120_000, 600_000];
+export const MAX_INDEX_ATTEMPTS = RETRY_DELAYS_MS.length + 1;
 
 export const getRetryDelayMs = (attempt: number) =>
     RETRY_DELAYS_MS[Math.min(attempt, RETRY_DELAYS_MS.length) - 1];
