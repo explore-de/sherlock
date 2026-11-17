@@ -8,7 +8,7 @@ import { getRepoPath, getTokenFromConfig, measure, getShardPrefix } from "./util
 import { cloneRepository, fetchRepository, upsertGitConfig } from "./git.js";
 import { existsSync, readdirSync, promises } from 'fs';
 import { indexGitRepository } from "./zoekt.js";
-import { getReposToIndexFilter, getRetryDelayMs } from "./reindexPolicy.js";
+import { getReposToIndexFilter, getRetryDelayMs, MAX_INDEX_ATTEMPTS } from "./reindexPolicy.js";
 import { PromClient } from './promClient.js';
 import * as Sentry from "@sentry/node";
 
@@ -81,6 +81,16 @@ export class RepoManager implements IRepoManager {
     ///////////////////////////
 
     private async scheduleRepoIndexingBulk(repos: RepoWithConnections[]) {
+        // A timeout changes DB status without stopping the worker. Include queued jobs too,
+        // since a stalled worker can return its job to the queue. This also covers jobs
+        // created before queue deduplication was enabled.
+        const pendingJobs = await this.indexQueue.getJobs(['active', 'waiting', 'prioritized', 'delayed', 'waiting-children']);
+        const busyRepoIds = new Set(pendingJobs.map(job => job.data.repo.id));
+        repos = repos.filter(repo => !busyRepoIds.has(repo.id));
+        if (repos.length === 0) {
+            return;
+        }
+
         await this.db.$transaction(async (tx) => {
             await tx.repo.updateMany({
                 where: { id: { in: repos.map(repo => repo.id) } },
@@ -105,7 +115,9 @@ export class RepoManager implements IRepoManager {
                     name: 'repoIndexJob',
                     data: { repo },
                     opts: {
-                        priority: priority
+                        priority: priority,
+                        // Redis enforces this across concurrent schedulers until the job finishes.
+                        deduplication: { id: `repo-${repo.id}` },
                     }
                 })));
 
@@ -284,7 +296,7 @@ export class RepoManager implements IRepoManager {
 
         let stats;
         let attempts = 0;
-        const maxAttempts = 3;
+        const maxAttempts = MAX_INDEX_ATTEMPTS;
 
         while (attempts < maxAttempts) {
             try {
@@ -494,8 +506,14 @@ export class RepoManager implements IRepoManager {
     private async scheduleRepoTimeoutsBulk(repos: Repo[]) {
         await this.db.$transaction(async (tx) => {
             await tx.repo.updateMany({
-                where: { id: { in: repos.map(repo => repo.id) } },
-                data: { repoIndexingStatus: RepoIndexingStatus.FAILED }
+                where: {
+                    id: { in: repos.map(repo => repo.id) },
+                    repoIndexingStatus: RepoIndexingStatus.INDEXING,
+                },
+                data: {
+                    repoIndexingStatus: RepoIndexingStatus.FAILED,
+                    indexedAt: new Date(),
+                }
             });
         });
     }
