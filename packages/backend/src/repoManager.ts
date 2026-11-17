@@ -8,6 +8,7 @@ import { getRepoPath, getTokenFromConfig, measure, getShardPrefix } from "./util
 import { cloneRepository, fetchRepository, upsertGitConfig } from "./git.js";
 import { existsSync, readdirSync, promises } from 'fs';
 import { indexGitRepository } from "./zoekt.js";
+import { getReposToIndexFilter, getRetryDelayMs } from "./reindexPolicy.js";
 import { PromClient } from './promClient.js';
 import * as Sentry from "@sentry/node";
 
@@ -126,30 +127,7 @@ export class RepoManager implements IRepoManager {
     private async fetchAndScheduleRepoIndexing() {
         const thresholdDate = new Date(Date.now() - this.settings.reindexIntervalMs);
         const repos = await this.db.repo.findMany({
-            where: {
-                OR: [
-                    // "NEW" is really a misnomer here - it just means that the repo needs to be indexed
-                    // immediately. In most cases, this will be because the repo was just created and
-                    // is indeed "new". However, it could also be that a "retry" was requested on a failed
-                    // index. So, we don't want to block on the indexedAt timestamp here.
-                    {
-                        repoIndexingStatus: RepoIndexingStatus.NEW,
-                    },
-                    // When the repo has already been indexed, we only want to reindex if the reindexing
-                    // interval has elapsed (or if the date isn't set for some reason).
-                    {
-                        AND: [
-                            { repoIndexingStatus: RepoIndexingStatus.INDEXED },
-                            {
-                                OR: [
-                                    { indexedAt: null },
-                                    { indexedAt: { lt: thresholdDate } },
-                                ]
-                            }
-                        ]
-                    }
-                ]
-            },
+            where: getReposToIndexFilter(thresholdDate),
             include: {
                 connections: {
                     include: {
@@ -322,7 +300,7 @@ export class RepoManager implements IRepoManager {
                     throw error;
                 }
 
-                const sleepDuration = 5000 * Math.pow(2, attempts - 1);
+                const sleepDuration = getRetryDelayMs(attempts);
                 this.logger.error(`Failed to sync repository ${repo.id}, attempt ${attempts}/${maxAttempts}. Sleeping for ${sleepDuration / 1000}s... Error: ${error}`);
                 await new Promise(resolve => setTimeout(resolve, sleepDuration));
             }
