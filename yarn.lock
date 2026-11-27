@@ -4936,7 +4936,7 @@ __metadata:
     http-status-codes: "npm:^2.3.0"
     input-otp: "npm:^1.5.0"
     jsdom: "npm:^30.1.3"
-    lucide-react: "npm:^0.435.0"
+    lucide-react: "npm:^1.63.0"
     next: "npm:15.5.29"
     next-auth: "npm:5.0.0-beta.32"
     next-themes: "npm:^0.4.6"
@@ -10517,12 +10517,16 @@ __metadata:
   languageName: node
   linkType: hard
 
-"lucide-react@npm:^0.435.0":
-  version: 0.435.0
-  resolution: "lucide-react@npm:0.435.0"
+"lucide-react@npm:^1.63.0":
+  version: 1.63.0
+  resolution: "lucide-react@npm:1.63.0"
   peerDependencies:
-    react: ^16.5.1 || ^17.0.0 || ^18.0.0 || ^19.0.0-rc
-  checksum: 10c0/8a1653901a362d83696b555ff2cc1f06126008c8a09b1b8a0db8484b98c9de5c44589d00296d1f419ebb4e65524fcc4eb1fe39f1721dd22242dc34788f8936f5
+    "@types/react": "*"
+    react: ^16.5.1 || ^17.0.0 || ^18.0.0 || ^19.0.0
+  peerDependenciesMeta:
+    "@types/react":
+      optional: true
+  checksum: 10c0/697becd36aea8f4242fc9c7a8bf4b8838c2432bd4fc08d29d29c1b08faf38e809e8e6d73013a586406e225f908278a2bc4c32f2a84f8b1a6a0174e95f51c8456
   languageName: node
   linkType: hard
 
