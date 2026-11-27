@@ -4,6 +4,7 @@ import { useCallback, useState } from "react";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { LucideCheck, LucideCopy } from "lucide-react";
+import { buildClaudeMcpAddCommand } from "./mcpSetupCommand";
 
 export const McpSetupCard = () => {
     const [hasCopied, setHasCopied] = useState(false);
@@ -11,7 +12,7 @@ export const McpSetupCard = () => {
     // Rendered on the client so the command carries the host the user actually
     // reached this page on, rather than a build-time guess.
     const origin = typeof window === "undefined" ? "" : window.location.origin;
-    const command = `claude mcp add --transport http sherlock ${origin}/api/mcp --header "Authorization: Bearer YOUR_KEY"`;
+    const command = buildClaudeMcpAddCommand(origin);
 
     const onCopy = useCallback(() => {
         navigator.clipboard.writeText(command).then(() => {
